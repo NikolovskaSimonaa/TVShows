@@ -7,6 +7,7 @@
 
 //import Foundation
 import UIKit
+import MBProgressHUD
 
 class LoginViewController:UIViewController{
     
@@ -16,6 +17,7 @@ class LoginViewController:UIViewController{
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        MBProgressHUD.showAdded(to:view,animated:true)
         print("Test")
     }
     
