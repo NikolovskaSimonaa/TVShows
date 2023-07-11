@@ -193,6 +193,7 @@
 				4206A40E2A5AE86900B32CC6 /* Sources */,
 				4206A40F2A5AE86900B32CC6 /* Frameworks */,
 				4206A4102A5AE86900B32CC6 /* Resources */,
+				5022CF92D1DF9202CEEDE6BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,6 +231,7 @@
 				4206A42E2A5AE86A00B32CC6 /* Sources */,
 				4206A42F2A5AE86A00B32CC6 /* Frameworks */,
 				4206A4302A5AE86A00B32CC6 /* Resources */,
+				52080EC6098C60B721009C89 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,6 +335,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5022CF92D1DF9202CEEDE6BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TVShows/Pods-TVShows-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TVShows/Pods-TVShows-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TVShows/Pods-TVShows-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52080EC6098C60B721009C89 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TVShows-TVShowsUITests/Pods-TVShows-TVShowsUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TVShows-TVShowsUITests/Pods-TVShows-TVShowsUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TVShows-TVShowsUITests/Pods-TVShows-TVShowsUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		92E6C07FC6A4F2E7E9D54942 /* [CP] Check Pods Manifest.lock */ = {
