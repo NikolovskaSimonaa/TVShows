@@ -11,14 +11,13 @@
         <!--Login View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController id="Y6W-OH-hqX" customClass="LoginViewController" customModule="TVShows" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Euy-67-U4e">
-                                <rect key="frame" x="35" y="430" width="323" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Euy-67-U4e">
+                                <rect key="frame" x="10" y="433.33333333333331" width="373" height="48.666666666666686"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Increment" cornerStyle="capsule">
                                     <fontDescription key="titleFontDescription" name="Helvetica" family="Helvetica" pointSize="30"/>
@@ -27,9 +26,8 @@
                                     <action selector="buttonTouchUpInside:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="oVd-WT-qxI"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JI-em-S2z">
-                                <rect key="frame" x="41" y="322" width="310" height="69"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JI-em-S2z">
+                                <rect key="frame" x="20" y="381.66666666666669" width="353" height="41.666666666666686"/>
                                 <color key="backgroundColor" red="0.94863482603092786" green="0.94863482603092786" blue="0.94863482603092786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -39,6 +37,14 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="linkColor"/>
+                        <constraints>
+                            <constraint firstItem="0JI-em-S2z" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="8fa-4p-5rn"/>
+                            <constraint firstItem="Euy-67-U4e" firstAttribute="top" secondItem="0JI-em-S2z" secondAttribute="bottom" constant="10" id="GsV-oJ-Pz7"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Euy-67-U4e" secondAttribute="bottom" constant="336" id="Knk-Wv-3jH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="0JI-em-S2z" secondAttribute="trailing" constant="20" id="hPa-8x-YhV"/>
+                            <constraint firstItem="Euy-67-U4e" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="kvu-8m-jlg"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Euy-67-U4e" secondAttribute="trailing" constant="10" id="u5I-16-fpx"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="labelCount" destination="0JI-em-S2z" id="RlE-uM-PAM"/>
