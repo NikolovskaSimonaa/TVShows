@@ -1,10 +1,6 @@
 //
 //  AppDelegate.swift
 //  TVShows
-//
-//  Created by Infinum Academy 7 on 9.7.23.
-//
-
 import UIKit
 
 @main

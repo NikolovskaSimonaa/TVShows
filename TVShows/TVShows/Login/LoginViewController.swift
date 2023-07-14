@@ -1,28 +1,36 @@
-//
-//  LoginViewController.swift
-//  TVShows
-//
-//  Created by Infinum Academy 7 on 11.7.23.
-//
-
-//import Foundation
 import UIKit
 import MBProgressHUD
 
-class LoginViewController:UIViewController{
+final class LoginViewController:UIViewController{
     
-    //@IBOutlet weak var labelCount: UILabel!
     @IBOutlet var labelCount: UILabel!
-    var count:Int=0
-    
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    private var numberOfTaps: Int = 0
+
     override func viewDidLoad(){
         super.viewDidLoad()
-        MBProgressHUD.showAdded(to:view,animated:true)
-        print("Test")
+        startActivityIndicator()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+            self.stopActivityIndicator()
+        }
     }
     
-    @IBAction func buttonTouchUpInside(_ sender: Any) {
-        count=count+1
-        labelCount.text = "\(count)"
+    @IBAction private func buttonPressed() {
+        if activityIndicator.isAnimating{
+            numberOfTaps = numberOfTaps + 1
+            labelCount.text = "\(numberOfTaps)"
+            stopActivityIndicator()
+        }else{
+            startActivityIndicator()
+        }
+    }
+    
+    func startActivityIndicator(){
+        activityIndicator.startAnimating()
+    }
+    
+    func stopActivityIndicator(){
+        activityIndicator.stopAnimating()
     }
 }
+
