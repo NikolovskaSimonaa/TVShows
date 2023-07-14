@@ -15,30 +15,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="JRP-Kv-ge1">
-                                <rect key="frame" x="115.66666666666669" y="407" width="162" height="38"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-top-left" translatesAutoresizingMaskIntoConstraints="NO" id="djx-D3-ieP">
-                                <rect key="frame" x="0.0" y="45" width="140" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="5WY-nB-Y8E"/>
+                                </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-top-right" translatesAutoresizingMaskIntoConstraints="NO" id="aYx-iS-Jk7">
-                                <rect key="frame" x="243" y="45" width="202" height="128"/>
+                                <rect key="frame" x="191" y="0.0" width="202" height="265"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="KOj-BY-oFR"/>
+                                    <constraint firstAttribute="height" constant="265" id="qYl-xJ-ru8"/>
                                 </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="JRP-Kv-ge1">
+                                <rect key="frame" x="111.33333333333333" y="406" width="170.33333333333337" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JRP-Kv-ge1" secondAttribute="height" multiplier="81:19" id="wnG-E6-dIK"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="aYx-iS-Jk7" secondAttribute="trailing" constant="-68" id="9iX-xY-MfR"/>
-                            <constraint firstItem="JRP-Kv-ge1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="D00-uJ-DZF"/>
-                            <constraint firstItem="djx-D3-ieP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-14" id="aE0-cj-uXA"/>
-                            <constraint firstItem="JRP-Kv-ge1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eTC-D0-ku6"/>
-                            <constraint firstItem="djx-D3-ieP" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="mZs-K6-Xhk"/>
-                            <constraint firstItem="aYx-iS-Jk7" firstAttribute="firstBaseline" secondItem="djx-D3-ieP" secondAttribute="firstBaseline" id="xKS-PD-FIw"/>
+                            <constraint firstItem="JRP-Kv-ge1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="5gm-rL-Vzu"/>
+                            <constraint firstItem="djx-D3-ieP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ehu-PV-fQV"/>
+                            <constraint firstItem="djx-D3-ieP" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="Wg7-qu-GFW"/>
+                            <constraint firstItem="aYx-iS-Jk7" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="e7u-1R-pAy"/>
+                            <constraint firstItem="JRP-Kv-ge1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hao-o8-Pel"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="JRP-Kv-ge1" secondAttribute="bottom" constant="372" id="jkj-Pn-sqw"/>
+                            <constraint firstItem="aYx-iS-Jk7" firstAttribute="top" secondItem="djx-D3-ieP" secondAttribute="top" id="qy8-gQ-utW"/>
                         </constraints>
                     </view>
                 </viewController>
