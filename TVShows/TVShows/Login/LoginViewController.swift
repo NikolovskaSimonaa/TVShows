@@ -47,7 +47,6 @@ final class LoginViewController:UIViewController{
         DispatchQueue.main.asyncAfter(deadline: .now() + 3){
             self.stopActivityIndicator()
         }
-        print("Test")
     }
     
     @IBAction private func buttonPressed() {
@@ -59,9 +58,11 @@ final class LoginViewController:UIViewController{
             startActivityIndicator()
         }
     }
+    
     func startActivityIndicator(){
         activityIndicator.startAnimating()
     }
+    
     func stopActivityIndicator(){
         activityIndicator.stopAnimating()
     }
