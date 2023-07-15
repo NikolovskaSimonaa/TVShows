@@ -4,37 +4,49 @@ final class LoginViewController:UIViewController{
     @IBOutlet var RememberMeButton: UIButton!
     @IBOutlet var SeePasswordButton: UIButton!
     @IBOutlet var LoginButton: UIButton!
+    @IBOutlet var PasswordTextField: UITextField!
+    @IBOutlet var RegisterButton: UIButton!
     private var RememberMeButtonIsChecked: Bool = false
     private var SeePasswordButtonIsChecked: Bool = false
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        SeePasswordButton.isHidden = true
+        SeePasswordButton.isSelected = false
+        RememberMeButton.isSelected = false
         LoginButton.layer.cornerRadius = 20
         LoginButton.clipsToBounds = true
-        updateRememberMeIcon()
+        LoginButton.isEnabled = false
+        LoginButton.backgroundColor = .lightText
+        //RegisterButton.isEnabled = false
+        //RegisterButton.setTitleColor(.lightText, for: .normal)
     }
     
-    @IBAction private func RememberMeButtonTapped(_ sender: Any){
-        RememberMeButtonIsChecked.toggle()
-        updateRememberMeIcon()
+    @IBAction private func PasswordFieldTapped() {
+        PasswordTextField.placeholder = nil
+        SeePasswordButton.isHidden = false
+        PasswordTextField.isSecureTextEntry.toggle()
     }
     
-    func updateRememberMeIcon(){
-        let iconName = RememberMeButtonIsChecked ? "checkmark.square" : "square"
-        let icon = UIImage(named: iconName)
-        RememberMeButton.setImage(icon, for: .normal)
+    @IBAction private func RememberMeButtonTapped(_ sender: UIButton){
+        if sender.isSelected {
+            sender.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
+        } else {
+            sender.setImage(UIImage(named: "square"), for: .normal)
+        }
+        sender.isSelected.toggle()
     }
     
-    @IBAction private func SeePasswordButtonTapped(_ sender: Any) {
-        SeePasswordButtonIsChecked.toggle()
-        updateSeePasswordIcon()
+    @IBAction private func SeePasswordButtonTapped(_ sender: UIButton) {
+        //SeePasswordButtonIsChecked.toggle()
+        PasswordTextField.isSecureTextEntry.toggle()
+        if sender.isSelected {
+            sender.setImage(UIImage(named: "eye.slash.fill"), for: .normal)
+        } else {
+            sender.setImage(UIImage(named: "eye"), for: .normal)
+        }
+        sender.isSelected.toggle()
     }
-    func updateSeePasswordIcon(){
-        let iconName = SeePasswordButtonIsChecked ? "eye" : "eye.slash.fill"
-        let icon = UIImage(named: iconName)
-        SeePasswordButton.setImage(icon, for: .normal)
-    }
-    
 }
     
 /*    @IBOutlet var labelCount: UILabel!
