@@ -1,12 +1,12 @@
 import UIKit
-final class LoginViewController:UIViewController, UITextFieldDelegate {
+final class LoginViewController:UIViewController {
     
-    @IBOutlet var rememberMeButton: UIButton!
-    @IBOutlet var seePasswordButton: UIButton!
-    @IBOutlet var loginButton: UIButton!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var registerButton: UIButton!
+    @IBOutlet private var seePasswordButton: UIButton!
+    @IBOutlet private var loginButton: UIButton!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var registerButton: UIButton!
+    @IBOutlet private var rememberMeButton: UIButton!
     private let attributesForTextField: [NSAttributedString.Key: Any] = [
         .foregroundColor : UIColor.white.withAlphaComponent(0.7),
         .font : UIFont.systemFont(ofSize: 17)
@@ -14,35 +14,13 @@ final class LoginViewController:UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        seePasswordButton.isHidden = true
-        seePasswordButton.isSelected = false
-        rememberMeButton.isSelected = false
-        loginButton.layer.cornerRadius = 20
-        loginButton.clipsToBounds = true
-        loginButton.isEnabled = false
-        loginButton.backgroundColor = .lightText
-        passwordTextField.isSecureTextEntry = true
-        
-        SeePasswordButtonSetIcon()
-        
-        RememberMeButtonSetIcon()
-        
-        emailTextField.attributedPlaceholder = NSAttributedString(
-            string: "Email",
-            attributes: attributesForTextField
-        )
-        
-        passwordTextField.attributedPlaceholder = NSAttributedString(
-            string: "Password",
-            attributes: attributesForTextField
-        )
-        
-        [emailTextField, passwordTextField].forEach({
-            $0.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        })
+        setUILogic()
+        seePasswordButtonSetIcon()
+        rememberMeButtonSetIcon()
+        setTextFieldsAttributes()
     }
     
-    @objc func editingChanged(_ textField: UITextField){
+    @objc func editingChanged(_ textField: UITextField) {
         if textField.text?.count == 1 {
             if textField.text?.first == " " {
                 textField.text = ""
@@ -54,32 +32,60 @@ final class LoginViewController:UIViewController, UITextFieldDelegate {
             let password = passwordTextField.text, !password.isEmpty
         else {
             loginButton.isEnabled = false
+            loginButton.backgroundColor = .lightText
             return
         }
         loginButton.isEnabled = true
+        loginButton.backgroundColor = .white
     }
     
-    private func SeePasswordButtonSetIcon(){
+    private func setUILogic() {
+        seePasswordButton.isHidden = true
+        seePasswordButton.isSelected = false
+        rememberMeButton.isSelected = false
+        loginButton.layer.cornerRadius = 20
+        loginButton.clipsToBounds = true
+        loginButton.isEnabled = false
+        loginButton.backgroundColor = .lightText
+        passwordTextField.isSecureTextEntry = true
+    }
+    
+    private func setTextFieldsAttributes() {
+        emailTextField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: attributesForTextField
+        )
+        passwordTextField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: attributesForTextField
+        )
+       
+        emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+    }
+    
+    private func seePasswordButtonSetIcon() {
         seePasswordButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
         seePasswordButton.setImage(UIImage(systemName: "eye"), for: .normal)
     }
     
-    private func RememberMeButtonSetIcon(){
-        rememberMeButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+    private func rememberMeButtonSetIcon() {
+        rememberMeButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
         rememberMeButton.setImage(UIImage(systemName: "square"), for: .normal)
     }
-    
-    @IBAction private func PasswordFieldTapped() {
+
+    @IBAction private func passwordFieldTapped() {
         passwordTextField.placeholder = nil
         seePasswordButton.isHidden = false
+
     }
     
-    @IBAction private func RememberMeButtonTapped(_ sender: UIButton){
-        sender.isSelected.toggle()
+    @IBAction private func rememberMeButtonTapped() {
+        rememberMeButton.isSelected.toggle()
     }
     
-    @IBAction private func SeePasswordButtonTapped(_ sender: UIButton) {
+    @IBAction func seePasswordButtonTapped() {
         passwordTextField.isSecureTextEntry.toggle()
-        sender.isSelected.toggle()
+        seePasswordButton.isSelected.toggle()
     }
 }

@@ -45,17 +45,17 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="qxN-20-uQU">
-                                <rect key="frame" x="25" y="306" width="343" height="42"/>
+                                <rect key="frame" x="25" y="306" width="343" height="26.666666666666686"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1cH-2c-KMr">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1cH-2c-KMr">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="18.666666666666668"/>
                                         <color key="backgroundColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RgW-yy-cPz" userLabel="Separator">
-                                        <rect key="frame" x="0.0" y="41" width="343" height="1"/>
+                                        <rect key="frame" x="0.0" y="25.666666666666686" width="343" height="1"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="RH6-Ma-5Al"/>
@@ -64,28 +64,29 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Kzc-0D-g0e">
-                                <rect key="frame" x="25" y="368" width="343" height="42"/>
+                                <rect key="frame" x="25" y="352.66666666666669" width="343" height="42"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yP3-kk-XS9">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="34"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nas-fB-fTu">
-                                                <rect key="frame" x="0.0" y="0.0" width="311" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nas-fB-fTu">
+                                                <rect key="frame" x="0.0" y="0.0" width="305" height="34"/>
                                                 <color key="backgroundColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="password"/>
                                                 <connections>
-                                                    <action selector="PasswordFieldTapped" destination="Y6W-OH-hqX" eventType="editingDidBegin" id="DD8-Lu-JSi"/>
+                                                    <action selector="passwordFieldTapped" destination="Y6W-OH-hqX" eventType="editingDidBegin" id="6Y9-u3-hFf"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbV-U8-Mcs">
-                                                <rect key="frame" x="319" y="0.0" width="24" height="34"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FbV-U8-Mcs">
+                                                <rect key="frame" x="313" y="0.0" width="30" height="34"/>
+                                                <color key="backgroundColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title=""/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title=""/>
                                                 <connections>
-                                                    <action selector="SeePasswordButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="KR2-Hc-8Uy"/>
+                                                    <action selector="seePasswordButtonTapped" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6DT-a8-XtB"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -100,7 +101,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qfY-5h-rGl">
-                                <rect key="frame" x="25" y="484" width="343" height="84"/>
+                                <rect key="frame" x="25" y="468.66666666666669" width="343" height="84.000000000000057"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qF-2O-gWe">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="38"/>
@@ -112,7 +113,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NN-u3-aFO">
-                                        <rect key="frame" x="0.0" y="46" width="343" height="38"/>
+                                        <rect key="frame" x="0.0" y="45.999999999999943" width="343" height="38"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Register">
@@ -122,19 +123,19 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zYG-ya-bas">
-                                <rect key="frame" x="25" y="425" width="143.33333333333334" height="24"/>
+                                <rect key="frame" x="25" y="409.66666666666669" width="143.33333333333334" height="24"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" role="destructive" translatesAutoresizingMaskIntoConstraints="NO" id="AnT-dm-n6p">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" role="destructive" translatesAutoresizingMaskIntoConstraints="NO" id="AnT-dm-n6p">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="3S0-BJ-1Ma"/>
                                             <constraint firstAttribute="width" constant="24" id="En9-jj-X3V"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="square" catalog="system" title=""/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" image="square" catalog="system"/>
                                         <connections>
-                                            <action selector="RememberMeButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="CGC-0y-Wpz"/>
+                                            <action selector="rememberMeButtonTapped" destination="Y6W-OH-hqX" eventType="touchUpInside" id="lFS-Ml-k1f"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaX-kb-ajw">
@@ -175,12 +176,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="EmailTextField" destination="1cH-2c-KMr" id="Z41-a8-Low"/>
-                        <outlet property="LoginButton" destination="3qF-2O-gWe" id="XuE-ov-jYf"/>
-                        <outlet property="PasswordTextField" destination="nas-fB-fTu" id="J6F-Uk-Xdq"/>
-                        <outlet property="RegisterButton" destination="7NN-u3-aFO" id="lgY-tb-kkH"/>
-                        <outlet property="RememberMeButton" destination="AnT-dm-n6p" id="EB2-OE-yRV"/>
-                        <outlet property="SeePasswordButton" destination="FbV-U8-Mcs" id="bks-n1-Ubb"/>
+                        <outlet property="emailTextField" destination="1cH-2c-KMr" id="tZa-dS-S5P"/>
+                        <outlet property="loginButton" destination="3qF-2O-gWe" id="r4W-1q-tNh"/>
+                        <outlet property="passwordTextField" destination="nas-fB-fTu" id="GIb-Pi-kWt"/>
+                        <outlet property="registerButton" destination="7NN-u3-aFO" id="UVQ-l1-FpE"/>
+                        <outlet property="rememberMeButton" destination="AnT-dm-n6p" id="F66-yW-BQl"/>
+                        <outlet property="seePasswordButton" destination="FbV-U8-Mcs" id="n5A-2a-yZi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
