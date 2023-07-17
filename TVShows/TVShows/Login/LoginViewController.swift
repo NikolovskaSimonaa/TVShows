@@ -5,9 +5,12 @@ final class LoginViewController:UIViewController{
     @IBOutlet var SeePasswordButton: UIButton!
     @IBOutlet var LoginButton: UIButton!
     @IBOutlet var PasswordTextField: UITextField!
+    @IBOutlet var EmailTextField: UITextField!
     @IBOutlet var RegisterButton: UIButton!
-    private var RememberMeButtonIsChecked: Bool = false
-    private var SeePasswordButtonIsChecked: Bool = false
+    private let attributesForTextField: [NSAttributedString.Key: Any] = [
+        .foregroundColor : UIColor.white.withAlphaComponent(0.7),
+        .font : UIFont.systemFont(ofSize: 17)
+    ]
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -18,65 +21,46 @@ final class LoginViewController:UIViewController{
         LoginButton.clipsToBounds = true
         LoginButton.isEnabled = false
         LoginButton.backgroundColor = .lightText
-        //RegisterButton.isEnabled = false
-        //RegisterButton.setTitleColor(.lightText, for: .normal)
+        PasswordTextField.isSecureTextEntry = true
+        
+        SeePasswordButtonSetIcon()
+        
+        RememberMeButtonSetIcon()
+        
+        EmailTextField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: attributesForTextField
+        )
+        
+        PasswordTextField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: attributesForTextField
+        )
+    }
+    
+    private func SeePasswordButtonSetIcon(){
+        SeePasswordButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
+        SeePasswordButton.setImage(UIImage(systemName: "eye"), for: .normal)
+    }
+    
+    private func RememberMeButtonSetIcon(){
+        RememberMeButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        RememberMeButton.setImage(UIImage(systemName: "square"), for: .normal)
     }
     
     @IBAction private func PasswordFieldTapped() {
         PasswordTextField.placeholder = nil
         SeePasswordButton.isHidden = false
-        PasswordTextField.isSecureTextEntry.toggle()
     }
     
     @IBAction private func RememberMeButtonTapped(_ sender: UIButton){
-        if sender.isSelected {
-            sender.setImage(UIImage(named: "checkmark.square.fill"), for: .normal)
-        } else {
-            sender.setImage(UIImage(named: "square"), for: .normal)
-        }
         sender.isSelected.toggle()
     }
     
     @IBAction private func SeePasswordButtonTapped(_ sender: UIButton) {
-        //SeePasswordButtonIsChecked.toggle()
         PasswordTextField.isSecureTextEntry.toggle()
-        if sender.isSelected {
-            sender.setImage(UIImage(named: "eye.slash.fill"), for: .normal)
-        } else {
-            sender.setImage(UIImage(named: "eye"), for: .normal)
-        }
         sender.isSelected.toggle()
     }
+    
 }
-    
-/*    @IBOutlet var labelCount: UILabel!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    private var numberOfTaps: Int = 0
-
-    override func viewDidLoad(){
-        super.viewDidLoad()
-        startActivityIndicator()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
-            self.stopActivityIndicator()
-        }
-    }
-    
-    @IBAction private func buttonPressed() {
-        if activityIndicator.isAnimating{
-            numberOfTaps = numberOfTaps + 1
-            labelCount.text = "\(numberOfTaps)"
-            stopActivityIndicator()
-        }else{
-            startActivityIndicator()
-        }
-    }
-    
-    func startActivityIndicator(){
-        activityIndicator.startAnimating()
-    }
-    
-    func stopActivityIndicator(){
-        activityIndicator.stopAnimating()
-    }
-}*/
 

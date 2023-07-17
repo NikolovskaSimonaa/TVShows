@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,23 +17,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-top-left" translatesAutoresizingMaskIntoConstraints="NO" id="djx-D3-ieP">
-                                <rect key="frame" x="0.0" y="0.0" width="140" height="99"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="99" id="5WY-nB-Y8E"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="100"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-top-right" translatesAutoresizingMaskIntoConstraints="NO" id="aYx-iS-Jk7">
-                                <rect key="frame" x="191" y="0.0" width="202" height="265"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="265" id="qYl-xJ-ru8"/>
-                                </constraints>
+                                <rect key="frame" x="191" y="0.0" width="202" height="266"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-white" translatesAutoresizingMaskIntoConstraints="NO" id="JRP-Kv-ge1">
-                                <rect key="frame" x="111.33333333333333" y="406" width="170.33333333333337" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="JRP-Kv-ge1" secondAttribute="height" multiplier="81:19" id="wnG-E6-dIK"/>
-                                </constraints>
+                                <rect key="frame" x="115.66666666666669" y="407" width="162" height="38"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                             </imageView>
                         </subviews>
@@ -40,12 +32,11 @@
                         <color key="backgroundColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JRP-Kv-ge1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="5gm-rL-Vzu"/>
+                            <constraint firstItem="aYx-iS-Jk7" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="AQn-El-h1F"/>
                             <constraint firstItem="djx-D3-ieP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ehu-PV-fQV"/>
+                            <constraint firstItem="aYx-iS-Jk7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ruz-rD-OHP"/>
                             <constraint firstItem="djx-D3-ieP" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="Wg7-qu-GFW"/>
-                            <constraint firstItem="aYx-iS-Jk7" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="e7u-1R-pAy"/>
                             <constraint firstItem="JRP-Kv-ge1" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hao-o8-Pel"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="JRP-Kv-ge1" secondAttribute="bottom" constant="372" id="jkj-Pn-sqw"/>
-                            <constraint firstItem="aYx-iS-Jk7" firstAttribute="top" secondItem="djx-D3-ieP" secondAttribute="top" id="qy8-gQ-utW"/>
                         </constraints>
                     </view>
                 </viewController>
