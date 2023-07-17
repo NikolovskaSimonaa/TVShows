@@ -1,16 +1,22 @@
 import UIKit
 final class LoginViewController:UIViewController {
-    
+    //MARK: - Outlets
+
     @IBOutlet private var seePasswordButton: UIButton!
     @IBOutlet private var loginButton: UIButton!
     @IBOutlet private var passwordTextField: UITextField!
     @IBOutlet private var emailTextField: UITextField!
     @IBOutlet private var registerButton: UIButton!
     @IBOutlet private var rememberMeButton: UIButton!
+    
+    //MARK: - Properties
+    
     private let attributesForTextField: [NSAttributedString.Key: Any] = [
         .foregroundColor : UIColor.white.withAlphaComponent(0.7),
         .font : UIFont.systemFont(ofSize: 17)
     ]
+    
+    //MARK: - Lifecycle methods
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -19,6 +25,8 @@ final class LoginViewController:UIViewController {
         rememberMeButtonSetIcon()
         setTextFieldsAttributes()
     }
+    
+    //MARK: - Utility methods
     
     @objc func editingChanged(_ textField: UITextField) {
         if textField.text?.count == 1 {
@@ -73,6 +81,8 @@ final class LoginViewController:UIViewController {
         rememberMeButton.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
         rememberMeButton.setImage(UIImage(systemName: "square"), for: .normal)
     }
+    
+    //MARK: - Actions
 
     @IBAction private func passwordFieldTapped() {
         passwordTextField.placeholder = nil
