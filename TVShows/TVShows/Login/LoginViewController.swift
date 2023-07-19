@@ -86,7 +86,7 @@ final class LoginViewController:UIViewController {
         rememberMeButton.setImage(UIImage(systemName: "square"), for: .normal)
     }
     
-    func registerUserResult(email: String, password: String, password_conformation : String) {
+    func registerUserResult(email: String, password: String, passwordConfirmation : String) {
         let parameters: [String: String] = [
             "email": email,
             "password": password,
@@ -184,7 +184,7 @@ final class LoginViewController:UIViewController {
     
     @IBAction private func registerButtonClicked() {
         if let mail = emailTextField.text, !mail.isEmpty, let pass = passwordTextField.text, !pass.isEmpty {
-            registerUserResult(email: mail, password: pass, password_conformation: pass)
+            registerUserResult(email: mail, password: pass, passwordConfirmation: pass)
         }
     }
     
