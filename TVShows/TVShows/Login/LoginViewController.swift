@@ -1,4 +1,7 @@
+import Alamofire
+import MBProgressHUD
 import UIKit
+
 final class LoginViewController:UIViewController {
     //MARK: - Outlets
 
@@ -15,6 +18,7 @@ final class LoginViewController:UIViewController {
         .foregroundColor : UIColor.white.withAlphaComponent(0.7),
         .font : UIFont.systemFont(ofSize: 17)
     ]
+    private var userResponse: UserResponse?
     
     //MARK: - Lifecycle methods
     
@@ -82,6 +86,79 @@ final class LoginViewController:UIViewController {
         rememberMeButton.setImage(UIImage(systemName: "square"), for: .normal)
     }
     
+    func registerUserResult(email: String, password: String, passwordConfirmation : String) {
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password,
+            "password_confirmation": password
+        ]
+        
+        MBProgressHUD.showAdded(to: view, animated: true)
+        
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users",
+                method: .post,
+                parameters: parameters,
+                encoder: JSONParameterEncoder.default
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                
+                switch response.result {
+                case .success(let userResponse):
+                    if let headers = response.response?.allHeaderFields as? [String: String] {
+                        print("Headers: \(headers)")
+                    }
+                    print("Body: \(userResponse)")
+                    self.userResponse = userResponse
+                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                    let viewControllerD = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+                    navigationController?.pushViewController(viewControllerD, animated: true)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    func loginUserResult(email: String, password: String) {
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password,
+        ]
+        
+        MBProgressHUD.showAdded(to: view, animated: true)
+        
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users/sign_in",
+                method: .post,
+                parameters: parameters,
+                encoder: JSONParameterEncoder.default
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                MBProgressHUD.hide(for: self.view, animated: true)
+
+                switch response.result {
+                case .success(let userResponse):
+                    if let headers = response.response?.allHeaderFields as? [String: String] {
+                        print("Headers: \(headers)")
+                    }
+                    print("Body: \(userResponse)")
+                    self.userResponse = userResponse
+                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                    let viewControllerD = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+                    navigationController?.pushViewController(viewControllerD, animated: true)
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+    }
+    
     //MARK: - Actions
 
     @IBAction private func passwordFieldTapped() {
@@ -94,8 +171,21 @@ final class LoginViewController:UIViewController {
         rememberMeButton.isSelected.toggle()
     }
     
-    @IBAction func seePasswordButtonTapped() {
+    @IBAction private func seePasswordButtonTapped() {
         passwordTextField.isSecureTextEntry.toggle()
         seePasswordButton.isSelected.toggle()
     }
+    
+    @IBAction private func loginButtonClicked() {
+        if let mail = emailTextField.text, !mail.isEmpty, let pass = passwordTextField.text, !pass.isEmpty {
+            loginUserResult(email: mail, password: pass)
+        }
+    }
+    
+    @IBAction private func registerButtonClicked() {
+        if let mail = emailTextField.text, !mail.isEmpty, let pass = passwordTextField.text, !pass.isEmpty {
+            registerUserResult(email: mail, password: pass, passwordConfirmation: pass)
+        }
+    }
+    
 }
