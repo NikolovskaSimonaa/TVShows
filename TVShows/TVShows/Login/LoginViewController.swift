@@ -116,9 +116,9 @@ final class LoginViewController:UIViewController {
                         print("Body: \(userResponse)")
                         self.userResponse = userResponse
                         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-                        //homeViewController.userResponse = userResponse
-                        //homeViewController.authInfo = authInfo
+                        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                        homeViewController.userResponse = userResponse
+                        homeViewController.authInfo = authInfo
                         navigationController?.pushViewController(homeViewController, animated: true)
                         navigationController?.setViewControllers([homeViewController], animated: true)
                     } else {
@@ -155,15 +155,21 @@ final class LoginViewController:UIViewController {
 
                 switch response.result {
                 case .success(let userResponse):
-                    if let headers = response.response?.allHeaderFields as? [String: String] {
+                    if let headers = response.response?.allHeaderFields as? [String: String],
+                        let authorization = headers["Authorization"] {
                         print("Headers: \(headers)")
+                        let authInfo = authorization
+                        print("Body: \(userResponse)")
+                        self.userResponse = userResponse
+                        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+                        homeViewController.userResponse = userResponse
+                        homeViewController.authInfo = authInfo
+                        navigationController?.pushViewController(homeViewController, animated: true)
+                        navigationController?.setViewControllers([homeViewController], animated: true)
+                    } else {
+                        print("Error: Authorization header not found")
                     }
-                    print("Body: \(userResponse)")
-                    self.userResponse = userResponse
-                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                    let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-                    navigationController?.pushViewController(homeViewController, animated: true)
-                    navigationController?.setViewControllers([homeViewController], animated: true)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                     let alertController = UIAlertController(title: "Login Failure", message: "Login failed, please try again.", preferredStyle: .alert)
