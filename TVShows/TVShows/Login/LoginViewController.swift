@@ -33,12 +33,6 @@ final class LoginViewController:UIViewController {
     //MARK: - Utility methods
     
     @objc func editingChanged(_ textField: UITextField) {
-        if textField.text?.count == 1 {
-            if textField.text?.first == " " {
-                textField.text = ""
-                return
-            }
-        }
         guard
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty
