@@ -1,6 +1,3 @@
-import Alamofire
-import MBProgressHUD
-
 struct UserResponse: Codable {
     let user: User
 }
