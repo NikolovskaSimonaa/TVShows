@@ -28,7 +28,6 @@ final class HomeViewController:UIViewController {
         MBProgressHUD.showAdded(to: view, animated: true)
         
         guard let authInfo else {
-            print("Ovde")
             return
         }
         

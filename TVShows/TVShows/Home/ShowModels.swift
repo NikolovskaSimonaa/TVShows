@@ -1,7 +1,7 @@
 struct Show: Decodable {
     let id: String
     let title: String
-    let description: String?
+    /*let description: String?
     let imageUrl: String
     let noOfReviews: Int
     let averageRating: String?
@@ -13,7 +13,7 @@ struct Show: Decodable {
         case imageUrl = "image_url"
         case noOfReviews = "no_of_reviews"
         case averageRating = "average_rating"
-    }
+    }*/
 }
 
 struct ShowsResponse: Decodable {
