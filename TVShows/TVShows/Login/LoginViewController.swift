@@ -86,8 +86,13 @@ final class LoginViewController:UIViewController {
         homeViewController.userResponse = userResponse
         let authInfo = AuthInfo(headers: headers)
         homeViewController.authInfo = authInfo
-        navigationController?.pushViewController(homeViewController, animated: true)
         navigationController?.setViewControllers([homeViewController], animated: true)
+    }
+    
+    private func alertMessage(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
     func registerUserResult(email: String, password: String, passwordConfirmation : String) {
@@ -123,9 +128,7 @@ final class LoginViewController:UIViewController {
                     }
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
-                    let alertController = UIAlertController(title: "Register Failure", message: "Register failed, please try again.", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    present(alertController, animated: true, completion: nil)
+                    alertMessage(title: "Register Failure", message: "Register failed, please try again.")
                 }
             }
     }
@@ -162,9 +165,7 @@ final class LoginViewController:UIViewController {
                     }
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
-                    let alertController = UIAlertController(title: "Login Failure", message: "Login failed, please try again.", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    present(alertController, animated: true, completion: nil)
+                    alertMessage(title: "Login Failure", message: "Login failed, please try again.")
                 }
             }
     }
