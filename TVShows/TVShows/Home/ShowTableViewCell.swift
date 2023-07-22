@@ -7,7 +7,4 @@ class ShowTableViewCell: UITableViewCell {
     func configure(with show: Show) {
         titleLabel.text = show.title
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
 }

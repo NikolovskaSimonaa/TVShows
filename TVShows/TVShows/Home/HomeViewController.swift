@@ -7,10 +7,13 @@ final class HomeViewController:UIViewController {
     
     @IBOutlet private var tableView: UITableView!
     
-    //MARK: - Properties
+    //MARK: - Public Properties
     
     var userResponse: UserResponse?
     var authInfo: AuthInfo?
+    
+    //MARK: - Private Properties
+    
     private var shows: [Show] = []
     
     //MARK: - Lifecycle methods
@@ -18,8 +21,7 @@ final class HomeViewController:UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getShowsFromDatabase()
-        tableView.dataSource = self
-        tableView.delegate = self
+        setupTableView()
     }
     
     //MARK: - Utility methods
@@ -27,9 +29,7 @@ final class HomeViewController:UIViewController {
     private func getShowsFromDatabase() {
         MBProgressHUD.showAdded(to: view, animated: true)
         
-        guard let authInfo else {
-            return
-        }
+        guard let authInfo else { return }
         
         AF
             .request(
@@ -51,6 +51,11 @@ final class HomeViewController:UIViewController {
                     print("Error: \(error.localizedDescription)")
                 }
             }
+    }
+    
+    private func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 }
 
