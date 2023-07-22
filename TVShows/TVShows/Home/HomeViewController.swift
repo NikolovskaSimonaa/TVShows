@@ -53,11 +53,15 @@ final class HomeViewController:UIViewController {
             }
     }
     
+    //MARK: - Utility methods
+    
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
     }
 }
+
+    //MARK: - Extensions
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
