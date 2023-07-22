@@ -80,6 +80,16 @@ final class LoginViewController:UIViewController {
         rememberMeButton.setImage(UIImage(systemName: "square"), for: .normal)
     }
     
+    private func navigateToHome(headers: [String: String]) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        homeViewController.userResponse = userResponse
+        let authInfo = AuthInfo(headers: headers)
+        homeViewController.authInfo = authInfo
+        navigationController?.pushViewController(homeViewController, animated: true)
+        navigationController?.setViewControllers([homeViewController], animated: true)
+    }
+    
     func registerUserResult(email: String, password: String, passwordConfirmation : String) {
         let parameters: [String: String] = [
             "email": email,
@@ -107,13 +117,7 @@ final class LoginViewController:UIViewController {
                         print("Headers: \(headers)")
                         print("Body: \(userResponse)")
                         self.userResponse = userResponse
-                        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                        homeViewController.userResponse = userResponse
-                        let authInfo = AuthInfo(headers: headers)
-                        homeViewController.authInfo = authInfo
-                        navigationController?.pushViewController(homeViewController, animated: true)
-                        navigationController?.setViewControllers([homeViewController], animated: true)
+                        navigateToHome(headers: headers)
                     } else {
                         print("Error: Headers not found")
                     }
@@ -152,13 +156,7 @@ final class LoginViewController:UIViewController {
                         print("Headers: \(headers)")
                         print("Body: \(userResponse)")
                         self.userResponse = userResponse
-                        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                        homeViewController.userResponse = userResponse
-                        let authInfo = AuthInfo(headers: headers)
-                        homeViewController.authInfo = authInfo
-                        navigationController?.pushViewController(homeViewController, animated: true)
-                        navigationController?.setViewControllers([homeViewController], animated: true)
+                        navigateToHome(headers: headers)
                     } else {
                         print("Error: Headers not found")
                     }
