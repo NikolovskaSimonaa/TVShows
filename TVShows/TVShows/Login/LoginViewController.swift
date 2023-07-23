@@ -33,12 +33,6 @@ final class LoginViewController:UIViewController {
     //MARK: - Utility methods
     
     @objc func editingChanged(_ textField: UITextField) {
-        if textField.text?.count == 1 {
-            if textField.text?.first == " " {
-                textField.text = ""
-                return
-            }
-        }
         guard
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty
@@ -86,6 +80,21 @@ final class LoginViewController:UIViewController {
         rememberMeButton.setImage(UIImage(systemName: "square"), for: .normal)
     }
     
+    private func navigateToHome(headers: [String: String]) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        homeViewController.userResponse = userResponse
+        let authInfo = AuthInfo(headers: headers)
+        homeViewController.authInfo = authInfo
+        navigationController?.setViewControllers([homeViewController], animated: true)
+    }
+    
+    private func alertMessage(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
     func registerUserResult(email: String, password: String, passwordConfirmation : String) {
         let parameters: [String: String] = [
             "email": email,
@@ -109,16 +118,17 @@ final class LoginViewController:UIViewController {
                 
                 switch response.result {
                 case .success(let userResponse):
-                    if let headers = response.response?.allHeaderFields as? [String: String] {
+                    if let headers = response.response?.allHeaderFields as? [String: String]{
                         print("Headers: \(headers)")
+                        print("Body: \(userResponse)")
+                        self.userResponse = userResponse
+                        navigateToHome(headers: headers)
+                    } else {
+                        print("Error: Headers not found")
                     }
-                    print("Body: \(userResponse)")
-                    self.userResponse = userResponse
-                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                    let viewControllerD = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-                    navigationController?.pushViewController(viewControllerD, animated: true)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
+                    alertMessage(title: "Register Failure", message: "Register failed, please try again.")
                 }
             }
     }
@@ -145,16 +155,17 @@ final class LoginViewController:UIViewController {
 
                 switch response.result {
                 case .success(let userResponse):
-                    if let headers = response.response?.allHeaderFields as? [String: String] {
+                    if let headers = response.response?.allHeaderFields as? [String: String]{
                         print("Headers: \(headers)")
+                        print("Body: \(userResponse)")
+                        self.userResponse = userResponse
+                        navigateToHome(headers: headers)
+                    } else {
+                        print("Error: Headers not found")
                     }
-                    print("Body: \(userResponse)")
-                    self.userResponse = userResponse
-                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                    let viewControllerD = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-                    navigationController?.pushViewController(viewControllerD, animated: true)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
+                    alertMessage(title: "Login Failure", message: "Login failed, please try again.")
                 }
             }
     }
