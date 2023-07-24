@@ -20,11 +20,24 @@ final class HomeViewController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTitle()
         getShowsFromDatabase()
         setupTableView()
     }
     
     //MARK: - Utility methods
+    
+    private func setTitle() {
+        self.title = "Shows"
+        if let navigationController = navigationController {
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.boldSystemFont(ofSize: 34.0)
+            ]
+            navigationController.navigationBar.titleTextAttributes = attributes
+            let color = UIColor(red: 249,green: 249, blue: 249, alpha: 0.94)
+            navigationController.navigationBar.barTintColor = color
+        }
+    }
     
     private func getShowsFromDatabase() {
         MBProgressHUD.showAdded(to: view, animated: true)
@@ -52,13 +65,19 @@ final class HomeViewController:UIViewController {
                 }
             }
     }
-    
-    //MARK: - Utility methods
-    
+
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
     }
+
+    private func navigateToShowDetails(authInfo: AuthInfo, show: Show) {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.showDetails, bundle: nil)
+        let showDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.showDetails) as! ShowDetailsViewController
+        showDetailsViewController.showModel = show
+        showDetailsViewController.authInfo = authInfo
+        navigationController?.pushViewController(showDetailsViewController, animated: true)
+      }
 }
 
     //MARK: - Extensions
@@ -83,5 +102,6 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        navigateToShowDetails(authInfo: authInfo!, show: shows[indexPath.row])
     }
 }
