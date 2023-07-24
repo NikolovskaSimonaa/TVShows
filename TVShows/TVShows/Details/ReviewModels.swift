@@ -1,5 +1,5 @@
 struct ReviewResponse: Codable {
-    let review: Review
+    let reviews: [Review]
 }
 
 struct Review: Codable {
