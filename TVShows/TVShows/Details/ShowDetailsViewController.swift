@@ -92,16 +92,16 @@ extension ShowDetailsViewController: UITableViewDataSource {
             cell.showDescription.text = showModel?.description
             return cell
         case 1:
-            if reviews?.count == 0, showModel?.averageRating == nil {
+            if showModel?.noOfReviews == nil, showModel?.averageRating == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.noReviews, for: indexPath) as! NoReviewsTableViewCell
                 return cell
             } else {
                 if indexPath.row == 0 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.rating, for: indexPath) as! RatingTableViewCell
-                    if let noOfReviews = reviews?.count, let averageRating = showModel?.averageRating {
+                    if let noOfReviews = showModel?.noOfReviews, let averageRating = showModel?.averageRating {
                         cell.showRatingLabel.text = "\(noOfReviews) REVIEWS, \(averageRating) AVERAGE"
                     }
-                    
+                    //apply rating
                     cell.averageRatingView.configure(withStyle: .small)
                     cell.averageRatingView.isUserInteractionEnabled = false
                     cell.averageRatingView.rating = showModel?.averageRating ?? 0
@@ -112,6 +112,7 @@ extension ShowDetailsViewController: UITableViewDataSource {
                         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.reviews, for: indexPath) as! ReviewsTableViewCell
                         cell.usernameLabel.text = review.user.email
                         cell.commentLabel.text = review.comment
+                        //apply rating
                         cell.ratingView.configure(withStyle: .small)
                         cell.ratingView.isUserInteractionEnabled = false
                         cell.ratingView.rating = review.rating
