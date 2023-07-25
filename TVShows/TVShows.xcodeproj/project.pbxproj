@@ -30,6 +30,8 @@
 		42D66D6B2A6D653700BD2850 /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D66D6A2A6D653700BD2850 /* ReviewsTableViewCell.swift */; };
 		42D66D6D2A6E8B3900BD2850 /* ReviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D66D6C2A6E8B3900BD2850 /* ReviewModels.swift */; };
 		42D66D712A6E962E00BD2850 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D66D702A6E962E00BD2850 /* ButtonTableViewCell.swift */; };
+		42D66D732A6FB76800BD2850 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D66D722A6FB76800BD2850 /* RatingView.swift */; };
+		42D66D752A6FBE6000BD2850 /* RatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D66D742A6FBE6000BD2850 /* RatingTableViewCell.swift */; };
 		5B2AB5CA39DD5DCD57A12D73 /* Pods_TVShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954D1A40B1F6B62848A0B999 /* Pods_TVShows.framework */; };
 		EE036176C426C9A3687C3843 /* Pods_TVShows_TVShowsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56AE8C634B683A99710278AA /* Pods_TVShows_TVShowsUITests.framework */; };
 /* End PBXBuildFile section */
@@ -81,6 +83,8 @@
 		42D66D6A2A6D653700BD2850 /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		42D66D6C2A6E8B3900BD2850 /* ReviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModels.swift; sourceTree = "<group>"; };
 		42D66D702A6E962E00BD2850 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+		42D66D722A6FB76800BD2850 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		42D66D742A6FBE6000BD2850 /* RatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTableViewCell.swift; sourceTree = "<group>"; };
 		451935551ADB1EF570839A37 /* Pods-TVShows-TVShowsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVShows-TVShowsUITests.release.xcconfig"; path = "Target Support Files/Pods-TVShows-TVShowsUITests/Pods-TVShows-TVShowsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4E58891E23FF6A65FD280309 /* Pods-TVShows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TVShows.release.xcconfig"; path = "Target Support Files/Pods-TVShows/Pods-TVShows.release.xcconfig"; sourceTree = "<group>"; };
 		56AE8C634B683A99710278AA /* Pods_TVShows_TVShowsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TVShows_TVShowsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +225,8 @@
 				42D66D6A2A6D653700BD2850 /* ReviewsTableViewCell.swift */,
 				42D66D6C2A6E8B3900BD2850 /* ReviewModels.swift */,
 				42D66D702A6E962E00BD2850 /* ButtonTableViewCell.swift */,
+				42D66D722A6FB76800BD2850 /* RatingView.swift */,
+				42D66D742A6FBE6000BD2850 /* RatingTableViewCell.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -482,6 +488,7 @@
 				4206A4162A5AE86900B32CC6 /* AppDelegate.swift in Sources */,
 				42D66D6D2A6E8B3900BD2850 /* ReviewModels.swift in Sources */,
 				42D66D442A66D5C500BD2850 /* UserModels.swift in Sources */,
+				42D66D732A6FB76800BD2850 /* RatingView.swift in Sources */,
 				42D66D4F2A6AD08200BD2850 /* HomeViewController.swift in Sources */,
 				42D66D4C2A69BF5000BD2850 /* ShowTableViewCell.swift in Sources */,
 				42D66D712A6E962E00BD2850 /* ButtonTableViewCell.swift in Sources */,
@@ -490,6 +497,7 @@
 				4206A4522A5D45A000B32CC6 /* LoginViewController.swift in Sources */,
 				4206A4182A5AE86900B32CC6 /* SceneDelegate.swift in Sources */,
 				42D66D632A6D2A3C00BD2850 /* ShowDetailsViewController.swift in Sources */,
+				42D66D752A6FBE6000BD2850 /* RatingTableViewCell.swift in Sources */,
 				42D66D482A69834F00BD2850 /* ShowModels.swift in Sources */,
 				42D66D4E2A6AA05500BD2850 /* AuthInfo.swift in Sources */,
 				42D66D582A6D269700BD2850 /* Constants.swift in Sources */,

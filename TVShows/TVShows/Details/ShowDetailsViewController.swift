@@ -11,6 +11,7 @@ final class ShowDetailsViewController: UIViewController {
     var showModel: Show?
     var authInfo: AuthInfo?
     var reviews: [Review]?
+    var filteredReviews: [Review]?
     
     //MARK: - Private Properties
     
@@ -50,8 +51,9 @@ final class ShowDetailsViewController: UIViewController {
                 switch response.result {
                 case .success(let reviewsResponse):
                     reviews = reviewsResponse.reviews
-                case .failure(let error):
                     print("ShowID: \(showId)")
+                    print("Reviews: \(reviews)")
+                case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }
             }
@@ -70,7 +72,7 @@ final class ShowDetailsViewController: UIViewController {
 
 extension ShowDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,17 +82,36 @@ extension ShowDetailsViewController: UITableViewDataSource {
             cell.showDescription.text = showModel?.description
             return cell
         case 1:
+            if showModel?.noOfReviews == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.rating, for: indexPath) as! RatingTableViewCell
+                cell.noReviewsLabel.isHidden = false
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.rating, for: indexPath) as! RatingTableViewCell
+                cell.noReviewsLabel.isHidden = true
+                //da se iznese rating-ot
+                return cell
+            }
+        case 2:
             getReviewsFromDatabase()
-            if let reviews = reviews {
+            if let reviews=reviews {
+                filteredReviews = reviews.filter {$0.showId == Int(showModel?.id ?? "0")}
+            }
+            if let reviews = filteredReviews, !reviews.isEmpty {
                 for review in reviews.self {
                     let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.reviews, for: indexPath) as! ReviewsTableViewCell
+                    cell.usernameLabel.text = review.user.email
+                    cell.commentLabel.text = review.comment
+                    cell.ratingView.configure(withStyle: .small)
+                    cell.ratingView.isUserInteractionEnabled = false
+                    cell.ratingView.rating = review.rating
                     return cell
                 }
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.reviews, for: indexPath) as! ReviewsTableViewCell
                 return cell
             }
-        case 2:
+        case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.button, for: indexPath) as! ButtonTableViewCell
             cell.writeReviewButton.layer.cornerRadius = 20
             cell.writeReviewButton.clipsToBounds = true
