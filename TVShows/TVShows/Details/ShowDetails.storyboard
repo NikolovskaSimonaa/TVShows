@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="17J-VP-dxC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,51 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
-        <scene sceneID="7N3-at-j6E">
-            <objects>
-                <tableViewController id="KsE-7X-UPR" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="cKG-Av-zoC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="s4x-of-uiX">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s4x-of-uiX" id="QBo-3X-aPs">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="KsE-7X-UPR" id="UAP-8G-RQT"/>
-                            <outlet property="delegate" destination="KsE-7X-UPR" id="BiW-mi-rWS"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="Yyo-qi-nd1"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7sv-rg-niS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-710" y="-19"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="M6p-IU-6rL">
-            <objects>
-                <navigationController id="Hlj-Wd-AiP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nqe-xk-18e">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="KsE-7X-UPR" kind="relationship" relationship="rootViewController" id="azr-R5-v3M"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k9U-E6-sey" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1616" y="-19"/>
-        </scene>
         <!--Show Details View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -107,7 +62,7 @@
                                             <outlet property="showImage" destination="hTb-dE-XSE" id="QPF-Er-fXw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RatingTableViewCell" rowHeight="31" id="Dcy-du-obX" customClass="RatingTableViewCell" customModule="TVShows" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoReviewsTableViewCell" rowHeight="31" id="Dcy-du-obX" customClass="NoReviewsTableViewCell" customModule="TVShows" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="549" width="393" height="31"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dcy-du-obX" id="QYW-Ot-Ti9">
@@ -117,7 +72,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No reviews yet." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vk-ye-SvQ">
                                                     <rect key="frame" x="138" y="5.3333333333333339" width="117" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="0.49562810430463577" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                             </subviews>
@@ -127,11 +82,47 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="noReviewsLabel" destination="3Vk-ye-SvQ" id="snZ-Gu-FZv"/>
+                                            <outlet property="noReviewsLabel" destination="3Vk-ye-SvQ" id="Lm3-bd-9mE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RatingTableViewCell" rowHeight="68" id="s8Z-Ua-wNd" customClass="RatingTableViewCell" customModule="TVShows" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="580" width="393" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s8Z-Ua-wNd" id="ZzO-T6-rve">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-oA-ZG5">
+                                                    <rect key="frame" x="20" y="10" width="353" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYY-fq-iD9" customClass="RatingView" customModule="TVShows" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="36" width="353" height="22"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="4f1-Tb-fzF"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="CYY-fq-iD9" secondAttribute="trailing" constant="20" id="GNr-fZ-Lef"/>
+                                                <constraint firstAttribute="bottom" secondItem="CYY-fq-iD9" secondAttribute="bottom" constant="10" id="R7o-Da-9R3"/>
+                                                <constraint firstItem="HV8-oA-ZG5" firstAttribute="top" secondItem="ZzO-T6-rve" secondAttribute="top" constant="10" id="RLT-sk-5hM"/>
+                                                <constraint firstItem="HV8-oA-ZG5" firstAttribute="leading" secondItem="ZzO-T6-rve" secondAttribute="leading" constant="20" id="Whg-r4-zuZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="HV8-oA-ZG5" secondAttribute="trailing" constant="20" id="aYA-fO-muN"/>
+                                                <constraint firstItem="CYY-fq-iD9" firstAttribute="leading" secondItem="ZzO-T6-rve" secondAttribute="leading" constant="20" id="eNF-0c-757"/>
+                                                <constraint firstItem="CYY-fq-iD9" firstAttribute="top" secondItem="HV8-oA-ZG5" secondAttribute="bottom" constant="8" id="hkQ-Vj-Bo7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="averageRatingView" destination="CYY-fq-iD9" id="NS3-00-Zsg"/>
+                                            <outlet property="showRatingLabel" destination="HV8-oA-ZG5" id="Gvr-aW-7qg"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewsTableViewCell" rowHeight="144" id="vlx-X5-0G1" customClass="ReviewsTableViewCell" customModule="TVShows" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="580" width="393" height="144"/>
+                                        <rect key="frame" x="0.0" y="648" width="393" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vlx-X5-0G1" id="LFz-wz-Agc">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="144"/>
@@ -145,14 +136,18 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user@email.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mgh-ga-ash">
-                                                    <rect key="frame" x="85" y="19" width="304" height="17"/>
+                                                    <rect key="frame" x="85" y="19" width="304" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvb-WI-44Z" customClass="RatingView" customModule="TVShows" customModuleProvider="target">
-                                                    <rect key="frame" x="85" y="46" width="296" height="19"/>
+                                                    <rect key="frame" x="85" y="44" width="296" height="21"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="tintColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="etU-RW-enk"/>
+                                                    </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here will go the comment of the specific user in multiple lines " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aC-qq-zj9">
                                                     <rect key="frame" x="20" y="73" width="353" height="61"/>
@@ -185,7 +180,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonTableViewCell" rowHeight="74" id="a1S-Az-zfc" customClass="ButtonTableViewCell" customModule="TVShows" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="724" width="393" height="74"/>
+                                        <rect key="frame" x="0.0" y="792" width="393" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a1S-Az-zfc" id="ID7-3M-1FO">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="74"/>
@@ -239,24 +234,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="991.60305343511448" y="-34.507042253521128"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="B3y-1e-8t7">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="17J-VP-dxC" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R8E-bx-RsT">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="gvG-F2-kdq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NgH-WP-9lv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="64.885496183206101" y="-34.507042253521128"/>
         </scene>
     </scenes>
     <resources>

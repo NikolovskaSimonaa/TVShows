@@ -11,7 +11,7 @@ struct Show: Decodable {
         case title
         case description
         case imageUrl = "image_url"
-        case noOfReviews = "no_of_reviews"
+        case noOfReviews
         case averageRating = "average_rating"
     }
 }

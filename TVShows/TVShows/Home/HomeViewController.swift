@@ -28,15 +28,8 @@ final class HomeViewController:UIViewController {
     //MARK: - Utility methods
     
     private func setTitle() {
-        self.title = "Shows"
-        if let navigationController = navigationController {
-            let attributes: [NSAttributedString.Key: Any] = [
-                .font: UIFont.boldSystemFont(ofSize: 34.0)
-            ]
-            navigationController.navigationBar.titleTextAttributes = attributes
-            let color = UIColor(red: 249,green: 249, blue: 249, alpha: 0.94)
-            navigationController.navigationBar.barTintColor = color
-        }
+        title = "Shows"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func getShowsFromDatabase() {
