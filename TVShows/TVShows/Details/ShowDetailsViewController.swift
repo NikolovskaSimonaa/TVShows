@@ -101,29 +101,19 @@ extension ShowDetailsViewController: UITableViewDataSource {
                     if let noOfReviews = showModel?.noOfReviews, let averageRating = showModel?.averageRating {
                         cell.showRatingLabel.text = "\(noOfReviews) REVIEWS, \(averageRating) AVERAGE"
                     }
-                    //apply rating
-                    cell.averageRatingView.configure(withStyle: .small)
-                    cell.averageRatingView.isUserInteractionEnabled = false
-                    cell.averageRatingView.rating = showModel?.averageRating ?? 0
-                    
+                    cell.configure(with: showModel!)
                     return cell
                 } else {
                     if let review = reviews?[indexPath.row - 1] {
                         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.reviews, for: indexPath) as! ReviewsTableViewCell
-                        cell.usernameLabel.text = review.user.email
-                        cell.commentLabel.text = review.comment
-                        //apply rating
-                        cell.ratingView.configure(withStyle: .small)
-                        cell.ratingView.isUserInteractionEnabled = false
-                        cell.ratingView.rating = review.rating
+                        cell.configure(with: review)
                         return cell
                     }
                 }
             }
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.button, for: indexPath) as! ButtonTableViewCell
-            cell.writeReviewButton.layer.cornerRadius = 20
-            cell.writeReviewButton.clipsToBounds = true
+            cell.configure()
             return cell
         default:
             return UITableViewCell()

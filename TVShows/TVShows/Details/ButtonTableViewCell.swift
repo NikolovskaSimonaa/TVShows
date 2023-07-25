@@ -6,4 +6,9 @@ class ButtonTableViewCell: UITableViewCell {
     
     @IBAction func writeReviewButtonClicked() {
     }
+    
+    func configure() {
+        writeReviewButton.layer.cornerRadius = 20
+        writeReviewButton.clipsToBounds = true
+    }
 }
