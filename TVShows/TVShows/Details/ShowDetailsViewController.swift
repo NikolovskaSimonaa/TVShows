@@ -62,7 +62,18 @@ final class ShowDetailsViewController: UIViewController {
         
     }
 }
-//MARK: - Extensions
+    //MARK: - Extensions
+
+extension ShowDetailsViewController: ButtonTableViewCellDelegate {
+    func writeReviewButtonClicked() {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.writeReview, bundle: nil)
+        let writeReviewViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.writeReview) as! WriteReviewViewController
+        writeReviewViewController.showId = showModel?.id
+        writeReviewViewController.authInfo = authInfo
+        let navigationController = UINavigationController(rootViewController: writeReviewViewController)
+        present(navigationController, animated: true)
+    }
+}
 
 extension ShowDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -113,8 +124,10 @@ extension ShowDetailsViewController: UITableViewDataSource {
             }
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.button, for: indexPath) as! ButtonTableViewCell
+            cell.delegate = self
             cell.configure()
             return cell
+         
         default:
             return UITableViewCell()
         }
@@ -125,6 +138,13 @@ extension ShowDetailsViewController: UITableViewDataSource {
 extension ShowDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension ShowDetailsViewController: WriteReviewViewControllerDelegate {    
+    func didAddNewReview() {
+        getReviewsFromDatabase()
+        self.tableView.reloadData()
     }
 }
 
