@@ -21,25 +21,33 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowTableViewCell" id="7Vj-Hp-9yn" customClass="ShowTableViewCell" customModule="TVShows" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="59.333332061767578"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShowTableViewCell" rowHeight="114" id="7Vj-Hp-9yn" customClass="ShowTableViewCell" customModule="TVShows" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Vj-Hp-9yn" id="waU-ed-16t">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="59.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="114"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-show-placeholder-vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xEu-xq-bFh">
+                                                    <rect key="frame" x="16" y="12" width="64" height="90"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="90" id="5rZ-QJ-ihJ"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1P-6X-DR6">
-                                                    <rect key="frame" x="28" y="19" width="337" height="21.333333333333329"/>
+                                                    <rect key="frame" x="104" y="46.666666666666664" width="41.333333333333343" height="20.999999999999993"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="C1P-6X-DR6" secondAttribute="trailing" constant="8" id="KBB-j1-i2C"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="C1P-6X-DR6" secondAttribute="bottom" constant="8" id="eK0-3Q-dDT"/>
-                                                <constraint firstItem="C1P-6X-DR6" firstAttribute="leading" secondItem="waU-ed-16t" secondAttribute="leadingMargin" constant="8" id="fqJ-qg-2Vb"/>
-                                                <constraint firstItem="C1P-6X-DR6" firstAttribute="top" secondItem="waU-ed-16t" secondAttribute="topMargin" constant="8" id="gtc-oI-dpO"/>
+                                                <constraint firstAttribute="bottom" secondItem="xEu-xq-bFh" secondAttribute="bottom" constant="12" id="GUb-hj-LiW"/>
+                                                <constraint firstItem="xEu-xq-bFh" firstAttribute="centerY" secondItem="waU-ed-16t" secondAttribute="centerY" id="GV7-Sq-LsX"/>
+                                                <constraint firstItem="C1P-6X-DR6" firstAttribute="leading" secondItem="xEu-xq-bFh" secondAttribute="trailing" constant="24" id="HFz-OQ-Xo9"/>
+                                                <constraint firstItem="xEu-xq-bFh" firstAttribute="leading" secondItem="waU-ed-16t" secondAttribute="leading" constant="16" id="jRK-Ic-RiK"/>
+                                                <constraint firstItem="C1P-6X-DR6" firstAttribute="centerY" secondItem="waU-ed-16t" secondAttribute="centerY" id="n9R-F4-2D0"/>
+                                                <constraint firstItem="xEu-xq-bFh" firstAttribute="top" secondItem="waU-ed-16t" secondAttribute="top" constant="12" id="yer-V6-8HD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -69,6 +77,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic-show-placeholder-vertical" width="64" height="90"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

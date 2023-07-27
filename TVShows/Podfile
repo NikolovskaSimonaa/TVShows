@@ -17,6 +17,7 @@ target 'TVShows' do
   end
   pod 'MBProgressHUD'
   pod 'Alamofire'
+  pod 'Kingfisher'
   
 end
 
