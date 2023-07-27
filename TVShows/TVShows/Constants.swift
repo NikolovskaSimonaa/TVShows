@@ -19,9 +19,10 @@ enum Constants {
         static let noReviews = "NoReviewsTableViewCell"
         static let reviews = "ReviewsTableViewCell"
         static let button = "ButtonTableViewCell"
-        
         static let writeReview = "WriteReviewTableViewCell"
+    }
+    enum Strings {
+        static let placeholder = "Enter your comment here..."
     }
     
 }
-

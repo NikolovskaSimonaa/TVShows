@@ -12,7 +12,7 @@ final class WriteReviewViewController: UIViewController {
     //MARK: - Public Properties
     
     weak var delegate: WriteReviewViewControllerDelegate?
-    var showId: String?
+    var showId: Int?
     var authInfo: AuthInfo?
     var user: User?
     private var reviewResponse: ReviewResponse?
@@ -30,6 +30,7 @@ final class WriteReviewViewController: UIViewController {
     
     private func showCloseButton() {
         let closeButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonClicked))
+        closeButton.tintColor = UIColor(red: 82.0/255.0, green: 54.0/255.0, blue: 140.0/255.0, alpha: 1)
         navigationItem.leftBarButtonItem = closeButton
     }
     
@@ -75,7 +76,7 @@ extension WriteReviewViewController: UITableViewDelegate {
 }
 
 extension WriteReviewViewController: WriteReviewTableViewCellDelegate {    
-    func submitReview(withRating rating: Int, comment: String, showId: String) {
+    func submitReview(withRating rating: Int, comment: String, showId: Int) {
         guard let authInfo = authInfo else { return }
         let parameters: [String: Any] = [
             "rating": rating,
@@ -89,12 +90,12 @@ extension WriteReviewViewController: WriteReviewTableViewCellDelegate {
                    headers: HTTPHeaders(authInfo.headers)
                    )
             .validate()
-            .responseDecodable(of: ReviewResponse.self) { [weak self] response in
+            .responseDecodable(of: WriteReviewResponse.self) { [weak self] response in
                 guard let self = self else { return }
                 switch response.result {
                 case .success( _):
                     DispatchQueue.main.async {
-                        self.delegate!.didAddNewReview()
+                        self.delegate?.didAddNewReview()
                         self.dismiss(animated: true, completion: nil)
                     }
                 case .failure(let error):
@@ -103,5 +104,3 @@ extension WriteReviewViewController: WriteReviewTableViewCellDelegate {
             }
     }
 }
-
-

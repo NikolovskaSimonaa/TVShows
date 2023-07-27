@@ -68,8 +68,9 @@ extension ShowDetailsViewController: ButtonTableViewCellDelegate {
     func writeReviewButtonClicked() {
         let storyboard = UIStoryboard(name: Constants.Storyboards.writeReview, bundle: nil)
         let writeReviewViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.writeReview) as! WriteReviewViewController
-        writeReviewViewController.showId = showModel?.id
+        writeReviewViewController.showId = Int(showModel?.id ?? "0")
         writeReviewViewController.authInfo = authInfo
+        writeReviewViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: writeReviewViewController)
         present(navigationController, animated: true)
     }
@@ -103,7 +104,8 @@ extension ShowDetailsViewController: UITableViewDataSource {
             cell.showDescription.text = showModel?.description
             return cell
         case 1:
-            if showModel?.noOfReviews == nil, showModel?.averageRating == nil {
+            if showModel?.noOfReviews == nil ||
+                showModel?.averageRating == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.noReviews, for: indexPath) as! NoReviewsTableViewCell
                 return cell
             } else {
@@ -147,4 +149,3 @@ extension ShowDetailsViewController: WriteReviewViewControllerDelegate {
         self.tableView.reloadData()
     }
 }
-

@@ -1,62 +1,69 @@
 import UIKit
 
 protocol WriteReviewTableViewCellDelegate: AnyObject {
-    func submitReview(withRating rating: Int, comment: String, showId: String)
+    func submitReview(withRating rating: Int, comment: String, showId: Int)
 }
 
 class WriteReviewTableViewCell: UITableViewCell {
     weak var delegate: WriteReviewTableViewCellDelegate?
-    var showId: String?
+    var showId: Int?
     @IBOutlet var setRating: RatingView!
     @IBOutlet var submitButton: UIButton!
-    @IBOutlet var commentTextField: UITextField!
+    @IBOutlet var commentView: UIView!
+    @IBOutlet var commentTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        //setUILogic()
+        setUILogic()
     }
     
     @IBAction func submitButtonClicked() {
-        guard let comment = commentTextField.text, !comment.isEmpty else { return }
+        guard let comment = commentTextView.text, !comment.isEmpty else { return }
         let rating = setRating.rating
-        delegate?.submitReview(withRating: rating, comment: comment, showId: showId ?? "")
+        delegate?.submitReview(withRating: rating, comment: comment, showId: showId ?? 0)
     }
     
-    /*@objc func editingChanged() {
-    if let comment = commentTextField.text, !comment.isEmpty {
-    submitButton.isEnabled = true
-    submitButton.backgroundColor = UIColor(red: 82, green: 54, blue: 140, alpha: 1)
-    } else {
-    submitButton.isEnabled = false
-    //submitButton.backgroundColor = .lightText
-    //submitButton.backgroundColor = UIColor(red: 82, green: 54, blue: 140, alpha: 0.2)
-    submitButton.alpha = 0.2
-    submitButton.setTitleColor(.white, for: .disabled)
-    // submitButton.tintColor = .white
-    }
+    @objc func editingChanged() {
+        if let comment = commentTextView.text, !comment.isEmpty && comment != Constants.Strings.placeholder && setRating.rating > 0 {
+            submitButton.isEnabled = true
+            submitButton.backgroundColor = UIColor(red: 82.0/255.0, green: 54.0/255.0, blue: 140.0/255.0, alpha: 1)
+        } else {
+            submitButton.isEnabled = false
+            submitButton.backgroundColor = UIColor(red: 82.0/255.0, green: 54.0/255.0, blue: 140.0/255.0, alpha: 0.2)
+        }
     }
     
     private func setUILogic() {
-    submitButton.layer.cornerRadius = 20
-    submitButton.clipsToBounds = true
-    submitButton.isEnabled = false
-    submitButton.backgroundColor = UIColor(red: 82, green: 54, blue: 140, alpha: 0.2)
-    //submitButton.alpha = 0.2
-    //submitButton.setTitleColor(.white, for: .disabled)
-    // submitButton.tintColor = .white
-
-    setRating.configure(withStyle: .large)
-    }*/
+        submitButton.layer.cornerRadius = 20
+        submitButton.clipsToBounds = true
+        submitButton.isEnabled = false
+        submitButton.backgroundColor = UIColor(red: 82.0/255.0, green: 54.0/255.0, blue: 140.0/255.0, alpha: 0.2)
+        submitButton.setTitleColor(.white, for: .normal)
+        submitButton.setTitleColor(.white, for: .disabled)
+        commentView.layer.cornerRadius = 10
+        commentTextView.delegate = self
+        commentTextView.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        setRating.configure(withStyle: .large)
+    }
     
 }
-    //MARK: - Extensions
+//MARK: - Extensions
 extension WriteReviewTableViewCell: RatingViewDelegate {
     func didChangeRating(_ rating: Int) {
-        submitButton.isEnabled = rating > 0 && !(commentTextField.text?.isEmpty ?? true)
+        submitButton.isEnabled = rating > 0 && !(commentTextView.text?.isEmpty ?? true)
     }
 }
 
-extension WriteReviewTableViewCell: UITextFieldDelegate {
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        submitButton.isEnabled = setRating.rating > 0 && !(textField.text?.isEmpty ?? true)
+extension WriteReviewTableViewCell: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == Constants.Strings.placeholder {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidChange(_ textView: UITextView){
+        if textView.text != Constants.Strings.placeholder {
+            editingChanged()
+        }
     }
 }
