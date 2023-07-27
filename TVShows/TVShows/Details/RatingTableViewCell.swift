@@ -1,8 +1,8 @@
 import UIKit
 
 class RatingTableViewCell: UITableViewCell {
-    @IBOutlet var showRatingLabel: UILabel!
-    @IBOutlet var averageRatingView: RatingView!
+    @IBOutlet private var showRatingLabel: UILabel!
+    @IBOutlet private var averageRatingView: RatingView!
     
     override func awakeFromNib() {
             super.awakeFromNib()
@@ -12,5 +12,8 @@ class RatingTableViewCell: UITableViewCell {
 
         func configure(with show: Show) {
             averageRatingView.setRoundedRating(show.averageRating!)
+            if let noOfReviews = show.noOfReviews, let averageRating = show.averageRating {
+                showRatingLabel.text = "\(noOfReviews) REVIEWS, \(averageRating) AVERAGE"
+            }
         }
 }

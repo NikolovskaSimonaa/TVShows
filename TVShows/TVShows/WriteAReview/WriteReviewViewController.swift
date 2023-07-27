@@ -53,7 +53,7 @@ final class WriteReviewViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
-    //MARK: - Extensions
+//MARK: - Extensions
 
 extension WriteReviewViewController: UITableViewDataSource {
     
@@ -88,19 +88,17 @@ extension WriteReviewViewController: WriteReviewTableViewCellDelegate {
                    parameters: parameters,
                    encoding: JSONEncoding.default,
                    headers: HTTPHeaders(authInfo.headers)
-                   )
-            .validate()
-            .responseDecodable(of: WriteReviewResponse.self) { [weak self] response in
-                guard let self = self else { return }
-                switch response.result {
-                case .success( _):
-                    DispatchQueue.main.async {
-                        self.delegate?.didAddNewReview()
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                case .failure(let error):
-                    alertMessage(title: "Error", message: error.localizedDescription)
-                }
+        )
+        .validate()
+        .responseDecodable(of: WriteReviewResponse.self) { [weak self] response in
+            guard let self = self else { return }
+            switch response.result {
+            case .success( _):
+                self.delegate?.didAddNewReview()
+                self.dismiss(animated: true, completion: nil)
+            case .failure(let error):
+                alertMessage(title: "Error", message: error.localizedDescription)
             }
+        }
     }
 }

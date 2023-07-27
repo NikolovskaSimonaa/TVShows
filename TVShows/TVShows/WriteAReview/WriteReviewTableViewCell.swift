@@ -7,10 +7,10 @@ protocol WriteReviewTableViewCellDelegate: AnyObject {
 class WriteReviewTableViewCell: UITableViewCell {
     weak var delegate: WriteReviewTableViewCellDelegate?
     var showId: Int?
-    @IBOutlet var setRating: RatingView!
-    @IBOutlet var submitButton: UIButton!
-    @IBOutlet var commentView: UIView!
-    @IBOutlet var commentTextView: UITextView!
+    @IBOutlet private var setRating: RatingView!
+    @IBOutlet private var submitButton: UIButton!
+    @IBOutlet private var commentView: UIView!
+    @IBOutlet private var commentTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
         setUILogic()

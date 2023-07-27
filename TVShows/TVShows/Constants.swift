@@ -17,7 +17,7 @@ enum Constants {
         static let imageDescription = "ImageDescriptionTableViewCell"
         static let rating = "RatingTableViewCell"
         static let noReviews = "NoReviewsTableViewCell"
-        static let reviews = "ReviewsTableViewCell"
+        static let review = "ReviewTableViewCell"
         static let button = "ButtonTableViewCell"
         static let writeReview = "WriteReviewTableViewCell"
     }

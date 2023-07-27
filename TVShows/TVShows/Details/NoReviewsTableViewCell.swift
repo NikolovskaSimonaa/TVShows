@@ -2,5 +2,5 @@ import UIKit
 
 class NoReviewsTableViewCell: UITableViewCell {
 
-    @IBOutlet var noReviewsLabel: UILabel!
+    @IBOutlet private var noReviewsLabel: UILabel!
 }

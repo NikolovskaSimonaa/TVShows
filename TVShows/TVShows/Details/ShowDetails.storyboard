@@ -125,7 +125,7 @@
                                             <outlet property="showRatingLabel" destination="HV8-oA-ZG5" id="Gvr-aW-7qg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewsTableViewCell" rowHeight="144" id="vlx-X5-0G1" customClass="ReviewsTableViewCell" customModule="TVShows" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReviewTableViewCell" rowHeight="144" id="vlx-X5-0G1" customClass="ReviewTableViewCell" customModule="TVShows" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="648" width="393" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vlx-X5-0G1" id="LFz-wz-Agc">

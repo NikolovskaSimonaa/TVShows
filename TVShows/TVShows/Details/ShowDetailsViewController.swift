@@ -16,42 +16,6 @@ final class ShowDetailsViewController: UIViewController {
     
     private var showId: String = ""
     
-    //MARK: - Utility methods
-    
-    private func setTitle(title: String) {
-        self.title = title
-    }
-    
-    private func setupTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
-    }
-    
-    private func getReviewsFromDatabase() {
-        showId = showModel?.id ?? "No ID"
-        guard let authInfo else { return }
-        AF
-            .request(
-                "https://tv-shows.infinum.academy/shows/\(showId)/reviews",
-                method: .get,
-                parameters: ["page": "1", "items": "100"],
-                headers: HTTPHeaders(authInfo.headers)
-            )
-            .validate()
-            .responseDecodable(of: ReviewResponse.self) { [weak self] response in
-                guard let self = self else { return }
-                switch response.result {
-                case .success(let reviewsResponse):
-                    reviews = reviewsResponse.reviews
-                    tableView.reloadData()
-                    //print("ShowID: \(showId)")
-                    //print("Reviews: \(reviews)")
-                case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
-                }
-            }
-    }
-    
     //MARK: - Lifecycle methods
     
     override func viewDidLoad() {
@@ -59,7 +23,6 @@ final class ShowDetailsViewController: UIViewController {
         setTitle(title: showModel?.title ?? "Show Title")
         setupTableView()
         getReviewsFromDatabase()
-        
     }
 }
     //MARK: - Extensions
@@ -100,40 +63,14 @@ extension ShowDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.imageDescription, for: indexPath) as! ImageDescriptionTableViewCell
-            cell.configure(with: showModel!)
-            return cell
+            return showDetailsCell(for: indexPath)
         case 1:
-            if showModel?.noOfReviews == nil ||
-                showModel?.averageRating == nil {
-                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.noReviews, for: indexPath) as! NoReviewsTableViewCell
-                return cell
-            } else {
-                if indexPath.row == 0 {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.rating, for: indexPath) as! RatingTableViewCell
-                    if let noOfReviews = showModel?.noOfReviews, let averageRating = showModel?.averageRating {
-                        cell.showRatingLabel.text = "\(noOfReviews) REVIEWS, \(averageRating) AVERAGE"
-                    }
-                    cell.configure(with: showModel!)
-                    return cell
-                } else {
-                    if let review = reviews?[indexPath.row - 1] {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.reviews, for: indexPath) as! ReviewsTableViewCell
-                        cell.configure(with: review)
-                        return cell
-                    }
-                }
-            }
+            return reviewsCell(for: indexPath)
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.button, for: indexPath) as! ButtonTableViewCell
-            cell.delegate = self
-            cell.configure()
-            return cell
-         
+            return buttonCell(for: indexPath)
         default:
             return UITableViewCell()
         }
-        return UITableViewCell()
     }
 }
 
@@ -146,6 +83,80 @@ extension ShowDetailsViewController: UITableViewDelegate {
 extension ShowDetailsViewController: WriteReviewViewControllerDelegate {    
     func didAddNewReview() {
         getReviewsFromDatabase()
-        self.tableView.reloadData()
+        tableView.reloadData()
+    }
+}
+
+private extension ShowDetailsViewController {
+    func setTitle(title: String) {
+        self.title = title
+    }
+    
+    func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    func alertMessage(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func getReviewsFromDatabase() {
+        showId = showModel?.id ?? "No ID"
+        guard let authInfo else { return }
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/shows/\(showId)/reviews",
+                method: .get,
+                parameters: ["page": "1", "items": "100"],
+                headers: HTTPHeaders(authInfo.headers)
+            )
+            .validate()
+            .responseDecodable(of: ReviewResponse.self) { [weak self] response in
+                guard let self = self else { return }
+                switch response.result {
+                case .success(let reviewsResponse):
+                    reviews = reviewsResponse.reviews
+                    tableView.reloadData()
+                case .failure(let error):
+                    alertMessage(title: "Error", message: error.localizedDescription)
+                }
+            }
+    }
+    
+    func showDetailsCell(for indexPath: IndexPath) -> ImageDescriptionTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.imageDescription, for: indexPath) as! ImageDescriptionTableViewCell
+        cell.configure(with: showModel!)
+        return cell
+    }
+    
+    func reviewsCell(for indexPath: IndexPath) -> UITableViewCell {
+        if showModel?.noOfReviews == nil ||
+            showModel?.averageRating == nil {
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.noReviews, for: indexPath) as! NoReviewsTableViewCell
+            return cell
+        } else {
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.rating, for: indexPath) as! RatingTableViewCell
+                cell.configure(with: showModel!)
+                return cell
+            } else {
+                if let review = reviews?[indexPath.row - 1] {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.review, for: indexPath) as! ReviewTableViewCell
+                    cell.configure(with: review)
+                    return cell
+                }
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    func buttonCell(for indexPath: IndexPath) -> ButtonTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.button, for: indexPath) as! ButtonTableViewCell
+        cell.delegate = self
+        cell.configure()
+        return cell
     }
 }

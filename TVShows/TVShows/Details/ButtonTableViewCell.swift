@@ -1,5 +1,9 @@
 import UIKit
 
+protocol ButtonTableViewCellDelegate: AnyObject {
+    func writeReviewButtonClicked()
+}
+
 class ButtonTableViewCell: UITableViewCell {
     weak var delegate: ButtonTableViewCellDelegate?
     @IBOutlet var writeReviewButton: UIButton!
@@ -12,8 +16,4 @@ class ButtonTableViewCell: UITableViewCell {
         writeReviewButton.layer.cornerRadius = 20
         writeReviewButton.clipsToBounds = true
     }
-}
-
-protocol ButtonTableViewCellDelegate: AnyObject {
-    func writeReviewButtonClicked()
 }
