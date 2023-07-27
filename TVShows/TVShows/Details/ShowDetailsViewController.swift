@@ -101,7 +101,7 @@ extension ShowDetailsViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.imageDescription, for: indexPath) as! ImageDescriptionTableViewCell
-            cell.showDescription.text = showModel?.description
+            cell.configure(with: showModel!)
             return cell
         case 1:
             if showModel?.noOfReviews == nil ||
