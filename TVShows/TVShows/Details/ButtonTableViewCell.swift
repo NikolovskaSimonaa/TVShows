@@ -6,7 +6,7 @@ protocol ButtonTableViewCellDelegate: AnyObject {
 
 class ButtonTableViewCell: UITableViewCell {
     weak var delegate: ButtonTableViewCellDelegate?
-    @IBOutlet var writeReviewButton: UIButton!
+    @IBOutlet private var writeReviewButton: UIButton!
     
     @IBAction func writeReviewButtonClicked() {
         delegate?.writeReviewButtonClicked()
