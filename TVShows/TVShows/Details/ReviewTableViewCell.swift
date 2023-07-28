@@ -1,3 +1,4 @@
+import Kingfisher
 import UIKit
 
 class ReviewTableViewCell: UITableViewCell {
@@ -17,5 +18,9 @@ class ReviewTableViewCell: UITableViewCell {
         usernameLabel.text = review.user.email
         commentLabel.text = review.comment
         ratingView.setRoundedRating(Double(review.rating))
+        userImage.kf.setImage(
+              with: review.user.imageUrl,
+              placeholder: UIImage(named: "ic-profile-placeholder")
+            )
     }
 }

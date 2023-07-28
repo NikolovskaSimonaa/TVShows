@@ -1,3 +1,4 @@
+import Kingfisher
 import UIKit
 
 class ShowTableViewCell: UITableViewCell {
@@ -7,5 +8,9 @@ class ShowTableViewCell: UITableViewCell {
     
     func configure(with show: Show) {
         titleLabel.text = show.title
+        iconImageView.kf.setImage(
+              with: show.imageUrl,
+              placeholder: UIImage(named: "ic-show-placeholder-vertical")
+            )
     }
 }
