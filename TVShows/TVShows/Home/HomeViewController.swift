@@ -33,10 +33,8 @@ final class HomeViewController:UIViewController {
     }
     
     private func getShowsFromDatabase() {
-        MBProgressHUD.showAdded(to: view, animated: true)
-        
         guard let authInfo else { return }
-        
+        MBProgressHUD.showAdded(to: view, animated: true)
         AF
             .request(
                 "https://tv-shows.infinum.academy/shows",

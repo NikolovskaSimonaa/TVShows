@@ -21,6 +21,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if authInfo != nil {
                 let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
                 let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
+                do {
+                    let decodedData = try JSONDecoder().decode(AuthInfo.self, from: authInfo!)
+                    homeViewController.authInfo = decodedData
+                } catch {
+                    print("Error decoding AuthInfo: \(error)")
+                }
                 navigationController.viewControllers = [homeViewController]
             } else {
                 let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
@@ -33,7 +39,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             navigationController.viewControllers = [loginViewController]
         }
         window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
