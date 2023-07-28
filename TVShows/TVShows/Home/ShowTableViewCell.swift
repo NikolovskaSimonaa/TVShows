@@ -6,12 +6,6 @@ class ShowTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var iconImageView: UIImageView!
     
-    /*override func prepareForReuse() {
-        super.prepareForReuse()
-        iconImageView.kf.cancelDownloadTask()
-        iconImageView.image = nil
-    }*/
-    
     func configure(with show: Show) {
         titleLabel.text = show.title
         
@@ -31,11 +25,5 @@ class ShowTableViewCell: UITableViewCell {
                 self.iconImageView.image = image
             }
         }
-        
-        /* this worked fine before I added functionality to the rememberMeButton
-         iconImageView.kf.setImage(
-            with: URL(string: show.imageUrl!),
-            placeholder: UIImage(named: "ic-show-placeholder-vertical")
-        )*/
     }
 }

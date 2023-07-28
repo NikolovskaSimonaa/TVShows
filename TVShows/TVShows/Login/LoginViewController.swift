@@ -118,8 +118,14 @@ final class LoginViewController:UIViewController {
         return isSelected
     }
     
-    func saveState(state: Bool) {
+    func saveState(state: Bool, authInfo: AuthInfo) {
         UserDefaults.standard.set(state, forKey: Constants.Defaults.rememberMeKey.rawValue)
+        do {
+            let encodedData = try JSONEncoder().encode(authInfo)
+            UserDefaults.standard.set(encodedData, forKey: Constants.Defaults.switchStateKey.rawValue)
+        } catch {
+            print("Error encoding AuthInfo: \(error)")
+        }
     }
     
     func registerUserResult(email: String, password: String, passwordConfirmation : String) {
@@ -148,6 +154,9 @@ final class LoginViewController:UIViewController {
                     if let headers = response.response?.allHeaderFields as? [String: String]{
                         print("Headers: \(headers)")
                         print("Body: \(userResponse)")
+                        if rememberMeButton.isSelected {
+                            saveState(state: true, authInfo: AuthInfo(headers: headers))
+                        }
                         self.userResponse = userResponse
                         navigateToHome(headers: headers)
                     } else {
@@ -185,6 +194,9 @@ final class LoginViewController:UIViewController {
                     if let headers = response.response?.allHeaderFields as? [String: String]{
                         print("Headers: \(headers)")
                         print("Body: \(userResponse)")
+                        if rememberMeButton.isSelected {
+                            saveState(state: true, authInfo: AuthInfo(headers: headers))
+                        }
                         self.userResponse = userResponse
                         navigateToHome(headers: headers)
                     } else {
@@ -218,9 +230,6 @@ final class LoginViewController:UIViewController {
     @IBAction private func loginButtonClicked() {
         if let mail = emailTextField.text, !mail.isEmpty, let pass = passwordTextField.text, !pass.isEmpty {
             loginUserResult(email: mail, password: pass)
-            if rememberMeButton.isSelected {
-                saveState(state: true)
-            }
         }
     }
     
