@@ -13,10 +13,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        let loginViewController = UIStoryboard(name: Constants.Storyboards.login, bundle: nil).instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
+        let navigationController = UINavigationController()
+        let authInfo = UserDefaults.standard.data(forKey: Constants.Defaults.switchStateKey.rawValue)
+        if loginViewController.loadState() {
+            if authInfo != nil {
+                let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
+                let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
+                navigationController.viewControllers = [homeViewController]
+            } else {
+                let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
+                let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
+                navigationController.viewControllers = [loginViewController]
+                }
+        } else { // case: rememberMeButton is not selected
+            let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
+            let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
+            navigationController.viewControllers = [loginViewController]
+        }
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

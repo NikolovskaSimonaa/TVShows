@@ -28,6 +28,8 @@ final class LoginViewController:UIViewController {
         seePasswordButtonSetIcon()
         rememberMeButtonSetIcon()
         setTextFieldsAttributes()
+        let rememberMeState = loadState()
+        rememberMeButton.isSelected = rememberMeState
     }
     
     //MARK: - Utility methods
@@ -94,6 +96,30 @@ final class LoginViewController:UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func pulsateButton(_ button: UIButton) {
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0.2,
+            usingSpringWithDamping: 1.0,
+            initialSpringVelocity: 0.6,
+            options: [.curveEaseIn, .autoreverse]) {
+                button.transform = CGAffineTransform(scaleX: 1.04, y: 1.04)
+            } completion: { _ in
+                button.transform = .identity
+            }
+        }
+    
+    func loadState() -> Bool {
+        let isSelected = UserDefaults.standard.bool(
+            forKey: Constants.Defaults.rememberMeKey.rawValue
+        )
+        return isSelected
+    }
+    
+    func saveState(state: Bool) {
+        UserDefaults.standard.set(state, forKey: Constants.Defaults.rememberMeKey.rawValue)
     }
     
     func registerUserResult(email: String, password: String, passwordConfirmation : String) {
@@ -167,6 +193,7 @@ final class LoginViewController:UIViewController {
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                     alertMessage(title: "Login Failure", message: "Login failed, please try again.")
+                    pulsateButton(loginButton)
                 }
             }
     }
@@ -191,6 +218,9 @@ final class LoginViewController:UIViewController {
     @IBAction private func loginButtonClicked() {
         if let mail = emailTextField.text, !mail.isEmpty, let pass = passwordTextField.text, !pass.isEmpty {
             loginUserResult(email: mail, password: pass)
+            if rememberMeButton.isSelected {
+                saveState(state: true)
+            }
         }
     }
     
