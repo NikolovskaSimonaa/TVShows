@@ -20,16 +20,57 @@ final class HomeViewController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTitle()
+        setupNavigationBar()
         getShowsFromDatabase()
         setupTableView()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLogout), name: .didLogout, object: nil)
     }
     
     //MARK: - Utility methods
     
-    private func setTitle() {
+    private func setupNavigationBar() {
         title = "Shows"
         navigationController?.navigationBar.prefersLargeTitles = true
+        let profileDetailsItem = UIBarButtonItem(
+            image: UIImage(named: "ic-profile-placeholder"),
+            style: .plain,
+            target: self,
+            action: #selector(profileDetailsActionHandler))
+        //profileDetailsItem.tintColor = UIColor.primary
+        navigationItem.rightBarButtonItem = profileDetailsItem
+    }
+    
+    @objc func profileDetailsActionHandler() {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
+        let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
+        
+        guard let authInfo = self.authInfo else { return }
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users/me",
+                method: .get,
+                parameters: ["page": "1", "items": "100"],
+                headers: HTTPHeaders(authInfo.headers)
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                guard self != nil else { return }
+                switch response.result {
+                case .success(let userResponse):
+                    profileDetailsViewController.user = userResponse.user
+                    profileDetailsViewController.authInfo = authInfo
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+        let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
+        present(navigationController, animated: true)
+    }
+    
+    @objc func handleLogout() {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
+        navigationController?.setViewControllers([loginViewController], animated: true)
     }
     
     private func getShowsFromDatabase() {
@@ -50,7 +91,6 @@ final class HomeViewController:UIViewController {
                 case .success(let showsResponse):
                     shows = showsResponse.shows
                     tableView.reloadData()
-                    print("Shows: \(shows)")
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }

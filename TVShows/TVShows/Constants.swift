@@ -7,12 +7,14 @@ enum Constants {
         static let home = "Home"
         static let showDetails = "ShowDetails"
         static let writeReview = "WriteReview"
+        static let profileDetails = "ProfileDetails"
     }
     enum ViewControllers {
         static let login = "LoginViewController"
         static let home = "HomeViewController"
         static let showDetails = "ShowDetailsViewController"
         static let writeReview = "WriteReviewViewController"
+        static let profileDetails = "ProfileDetailsViewController"
         
     }
     enum ViewCells {
@@ -31,4 +33,8 @@ enum Constants {
         case rememberMeKey
     }
     
+}
+
+extension Notification.Name {
+    static let didLogout  = Notification.Name("User did logout")
 }
