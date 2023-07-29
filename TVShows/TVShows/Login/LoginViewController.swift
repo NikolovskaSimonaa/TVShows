@@ -94,22 +94,42 @@ final class LoginViewController:UIViewController {
     
     private func alertMessage(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.pulsateButton(self.loginButton)
+            self.shakeTextField(textField: self.passwordTextField, numberOfShakes: 1, direction: -1, maxShakes: 2)
+            self.shakeTextField(textField: self.emailTextField, numberOfShakes: 1, direction: -1, maxShakes: 2)
+        }
+        alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
     }
     
     private func pulsateButton(_ button: UIButton) {
         UIView.animate(
-            withDuration: 0.2,
-            delay: 0.2,
-            usingSpringWithDamping: 1.0,
-            initialSpringVelocity: 0.6,
+            withDuration: 0.45,
+            delay: 0.4,
+            usingSpringWithDamping: 0.9,
+            initialSpringVelocity: 0.5,
             options: [.curveEaseIn, .autoreverse]) {
-                button.transform = CGAffineTransform(scaleX: 1.04, y: 1.04)
+                button.transform = CGAffineTransform(scaleX: 1.02, y: 1.02)
             } completion: { _ in
                 button.transform = .identity
             }
-        }
+    }
+    
+    func shakeTextField(textField: UITextField, numberOfShakes: Int, direction: CGFloat, maxShakes: Int) {
+        UIView.animate(
+            withDuration: 0.2,
+            animations: {
+                textField.transform = CGAffineTransform(translationX: 5 * direction, y: 0)
+            }, completion: { (aBool :Bool) -> Void in
+                if (numberOfShakes >= maxShakes) {
+                    textField.transform = .identity
+                    textField.becomeFirstResponder()
+                    return
+                }
+                self.shakeTextField(textField: textField, numberOfShakes: numberOfShakes + 1, direction: direction * -1, maxShakes: maxShakes)
+        })
+    }
     
     func loadState() -> Bool {
         let isSelected = UserDefaults.standard.bool(
@@ -205,7 +225,6 @@ final class LoginViewController:UIViewController {
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                     alertMessage(title: "Login Failure", message: "Login failed, please try again.")
-                    pulsateButton(loginButton)
                 }
             }
     }
