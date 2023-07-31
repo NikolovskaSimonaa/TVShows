@@ -50,7 +50,6 @@ final class HomeViewController:UIViewController {
                 case .success(let showsResponse):
                     shows = showsResponse.shows
                     tableView.reloadData()
-                    print("Shows: \(shows)")
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }

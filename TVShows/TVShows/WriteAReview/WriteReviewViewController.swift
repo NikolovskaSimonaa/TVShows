@@ -65,6 +65,8 @@ extension WriteReviewViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.writeReview, for: indexPath) as! WriteReviewTableViewCell
         cell.delegate = self
         cell.showId = showId
+        cell.selectionStyle = .none
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 1000, bottom: 0, right: 0)
         return cell
     }
 }
