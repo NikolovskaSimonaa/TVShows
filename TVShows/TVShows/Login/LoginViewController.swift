@@ -81,11 +81,12 @@ final class LoginViewController:UIViewController {
     }
     
     private func navigateToHome(headers: [String: String]) {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let storyboard = UIStoryboard(name: Constants.Storyboards.home, bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.home) as! HomeViewController
         homeViewController.userResponse = userResponse
         let authInfo = AuthInfo(headers: headers)
         homeViewController.authInfo = authInfo
+        homeViewController.navigationItem.title = "Shows"
         navigationController?.setViewControllers([homeViewController], animated: true)
     }
     
