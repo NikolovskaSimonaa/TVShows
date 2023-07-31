@@ -6,7 +6,7 @@ struct UserResponse: Codable {
 
 struct User: Codable {
     let email: String
-    let imageUrl: URL?
+    let imageUrl: String?
     let id: String
 
     enum CodingKeys: String, CodingKey {

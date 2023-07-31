@@ -32,18 +32,14 @@ final class HomeViewController:UIViewController {
         title = "Shows"
         navigationController?.navigationBar.prefersLargeTitles = true
         let profileDetailsItem = UIBarButtonItem(
-            image: UIImage(named: "ic-profile-placeholder"),
+            image: UIImage(named: "ic-profile"),
             style: .plain,
             target: self,
             action: #selector(profileDetailsActionHandler))
-        //profileDetailsItem.tintColor = UIColor.primary
         navigationItem.rightBarButtonItem = profileDetailsItem
     }
     
-    @objc func profileDetailsActionHandler() {
-        let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
-        let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
-        
+    @objc func profileDetailsActionHandler() {        
         guard let authInfo = self.authInfo else { return }
         AF
             .request(
@@ -57,14 +53,16 @@ final class HomeViewController:UIViewController {
                 guard self != nil else { return }
                 switch response.result {
                 case .success(let userResponse):
+                    let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
+                    let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
                     profileDetailsViewController.user = userResponse.user
                     profileDetailsViewController.authInfo = authInfo
+                    let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
+                    self?.present(navigationController, animated: true)
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }
             }
-        let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
-        present(navigationController, animated: true)
     }
     
     @objc func handleLogout() {

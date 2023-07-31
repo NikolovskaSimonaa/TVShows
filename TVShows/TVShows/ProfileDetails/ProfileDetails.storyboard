@@ -50,6 +50,9 @@
                                 <color key="tintColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Change Profile Photo "/>
+                                <connections>
+                                    <action selector="changePhotoButtonClicked" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jet-IW-Xi3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -70,6 +73,7 @@
                     <connections>
                         <outlet property="emailLabel" destination="E8N-Jc-9WS" id="osQ-u7-sdF"/>
                         <outlet property="logoutButton" destination="eqc-Ho-l7h" id="aTx-BX-ov6"/>
+                        <outlet property="profileImage" destination="dB7-pF-YSr" id="Fm0-8G-g2D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
