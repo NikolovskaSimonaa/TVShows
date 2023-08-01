@@ -34,6 +34,7 @@ class ProfileDetailsViewController: UIViewController, UINavigationControllerDele
                 with: URL(string: image),
                 placeholder: UIImage(named: "ic-profile-placeholder"))
         }
+        profileImage.layer.cornerRadius = 50
     }
     
     private func setupNavigationBar() {
