@@ -10,12 +10,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
-        // TODO: Commit test - please remove this line if you see it.
-
-        //needed these lines for logout
-        //UserDefaults.standard.removeObject(forKey: Constants.Defaults.switchStateKey.rawValue)
-        //UserDefaults.standard.removeObject(forKey: Constants.Defaults.rememberMeKey.rawValue)
         return true
     }
 
