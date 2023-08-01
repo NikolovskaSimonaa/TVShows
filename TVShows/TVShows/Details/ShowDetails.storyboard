@@ -190,7 +190,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="353" placeholderIntrinsicHeight="48" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emA-6w-SLN">
-                                                    <rect key="frame" x="20" y="11" width="353" height="52"/>
+                                                    <rect key="frame" x="20" y="0.0" width="353" height="48"/>
                                                     <color key="backgroundColor" red="0.32156862749999998" green="0.21176470589999999" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="FTc-WI-rox"/>
@@ -206,10 +206,9 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="emA-6w-SLN" firstAttribute="top" secondItem="ID7-3M-1FO" secondAttribute="topMargin" id="D6f-2F-hOg"/>
-                                                <constraint firstItem="emA-6w-SLN" firstAttribute="trailing" secondItem="ID7-3M-1FO" secondAttribute="trailingMargin" id="Hmn-8m-lvj"/>
-                                                <constraint firstItem="emA-6w-SLN" firstAttribute="bottom" secondItem="ID7-3M-1FO" secondAttribute="bottomMargin" id="OUQ-Y4-jNS"/>
-                                                <constraint firstItem="emA-6w-SLN" firstAttribute="leading" secondItem="ID7-3M-1FO" secondAttribute="leadingMargin" id="vGP-Ic-dow"/>
+                                                <constraint firstItem="emA-6w-SLN" firstAttribute="top" secondItem="ID7-3M-1FO" secondAttribute="top" id="AFU-Rh-IiK"/>
+                                                <constraint firstItem="emA-6w-SLN" firstAttribute="leading" secondItem="ID7-3M-1FO" secondAttribute="leading" constant="20" id="WJx-Qh-jmw"/>
+                                                <constraint firstAttribute="trailing" secondItem="emA-6w-SLN" secondAttribute="trailing" constant="20" id="vtX-T9-H94"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
