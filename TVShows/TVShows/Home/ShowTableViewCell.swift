@@ -8,9 +8,13 @@ class ShowTableViewCell: UITableViewCell {
     
     func configure(with show: Show) {
         titleLabel.text = show.title
-        iconImageView.kf.setImage(
-            with: URL(string: show.imageUrl!),
-            placeholder: UIImage(named: "ic-show-placeholder-vertical")
-        )
+        if let image = show.imageUrl {
+            iconImageView.kf.setImage(
+                with: URL(string: image),
+                placeholder: UIImage(named: "ic-show-placeholder-vertical")
+            )
+        } else {
+            iconImageView.image = UIImage(named: "ic-show-placeholder-vertical")
+        }
     }
 }

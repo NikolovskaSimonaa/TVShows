@@ -8,9 +8,13 @@ class ImageDescriptionTableViewCell: UITableViewCell {
     
     func configure(with show: Show) {
         showDescription.text = show.description
-        showImage.kf.setImage(
-            with: URL(string: show.imageUrl!),
-            placeholder: UIImage(named: "ic-show-placeholder-rectangle")
-        )
+        if let image = show.imageUrl {
+            showImage.kf.setImage(
+                with: URL(string: image),
+                placeholder: UIImage(named: "ic-show-placeholder-rectangle")
+            )
+        } else {
+            showImage.image = UIImage(named: "ic-show-placeholder-rectangle")
+        }
     }
 }

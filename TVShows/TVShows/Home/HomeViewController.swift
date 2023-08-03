@@ -39,30 +39,13 @@ final class HomeViewController:UIViewController {
         navigationItem.rightBarButtonItem = profileDetailsItem
     }
     
-    @objc func profileDetailsActionHandler() {        
+    @objc func profileDetailsActionHandler() {
         guard let authInfo = self.authInfo else { return }
-        AF
-            .request(
-                "https://tv-shows.infinum.academy/users/me",
-                method: .get,
-                parameters: ["page": "1", "items": "100"],
-                headers: HTTPHeaders(authInfo.headers)
-            )
-            .validate()
-            .responseDecodable(of: UserResponse.self) { [weak self] response in
-                guard self != nil else { return }
-                switch response.result {
-                case .success(let userResponse):
-                    let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
-                    let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
-                    profileDetailsViewController.user = userResponse.user
-                    profileDetailsViewController.authInfo = authInfo
-                    let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
-                    self?.present(navigationController, animated: true)
-                case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
-                }
-            }
+        let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
+        let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
+        profileDetailsViewController.authInfo = authInfo
+        let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
+        present(navigationController, animated: true)
     }
     
     @objc func handleLogout() {
@@ -126,7 +109,7 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 114
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

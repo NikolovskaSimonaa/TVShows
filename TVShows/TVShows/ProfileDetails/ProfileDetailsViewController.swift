@@ -20,6 +20,7 @@ class ProfileDetailsViewController: UIViewController, UINavigationControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        getUserData()
         setupUIlogic()
     }
     
@@ -33,6 +34,8 @@ class ProfileDetailsViewController: UIViewController, UINavigationControllerDele
             profileImage.kf.setImage(
                 with: URL(string: image),
                 placeholder: UIImage(named: "ic-profile-placeholder"))
+        } else {
+            profileImage.image = UIImage(named: "ic-profile-placeholder")
         }
         profileImage.layer.cornerRadius = 50
     }
@@ -48,6 +51,27 @@ class ProfileDetailsViewController: UIViewController, UINavigationControllerDele
         dismiss(animated: true)
     }
     
+    private func getUserData() {
+        guard let authInfo = self.authInfo else { return }
+        AF
+            .request(
+                "https://tv-shows.infinum.academy/users/me",
+                method: .get,
+                parameters: ["page": "1", "items": "100"],
+                headers: HTTPHeaders(authInfo.headers)
+            )
+            .validate()
+            .responseDecodable(of: UserResponse.self) { [weak self] response in
+                switch response.result {
+                case .success(let userResponse):
+                    self?.user = userResponse.user
+                    self?.setupUIlogic()
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+    }
+    
     private func storeImage(_ image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.9) else { return }
         guard let authInfo = self.authInfo, let user = self.user else { return }
@@ -55,15 +79,7 @@ class ProfileDetailsViewController: UIViewController, UINavigationControllerDele
             "uid": authInfo.headers["uid"] ?? user.email,
             "client": authInfo.headers["client"] ?? "",
             "access-token": authInfo.headers["access-token"] ?? ""
-            
         ]
-        
-        /*let parameters: [String: String] = [
-            "email": user.email,
-            "password": ,
-            "password_confirmation":
-        ]*/
-        
         let requestData = MultipartFormData()
         requestData.append(
             imageData, withName: "image",
@@ -85,7 +101,6 @@ class ProfileDetailsViewController: UIViewController, UINavigationControllerDele
                     if let imageString = userResponse.user.imageUrl, let imageUrl = URL(string: imageString) {
                         self.profileImage.kf.setImage(with: imageUrl)
                     }
-                    //self.setupUIlogic()
                 case .failure(let error):
                     print("Error uploading image: \(error.localizedDescription)")
                 }

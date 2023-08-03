@@ -23,6 +23,8 @@ class ReviewTableViewCell: UITableViewCell {
                 with: URL(string: image),
                 placeholder: UIImage(named: "ic-profile-placeholder")
             )
+        } else {
+            userImage.image = UIImage(named: "ic-profile-placeholder")
         }
         userImage.layer.cornerRadius = 20
     }
