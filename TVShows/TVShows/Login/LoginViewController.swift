@@ -28,6 +28,8 @@ final class LoginViewController:UIViewController {
         seePasswordButtonSetIcon()
         rememberMeButtonSetIcon()
         setTextFieldsAttributes()
+        let rememberMeState = loadState()
+        rememberMeButton.isSelected = rememberMeState
     }
     
     //MARK: - Utility methods
@@ -92,8 +94,58 @@ final class LoginViewController:UIViewController {
     
     private func alertMessage(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            self.pulsateButton(self.loginButton)
+            self.shakeTextField(textField: self.passwordTextField, numberOfShakes: 1, direction: -1, maxShakes: 2)
+            self.shakeTextField(textField: self.emailTextField, numberOfShakes: 1, direction: -1, maxShakes: 2)
+        }
+        alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func pulsateButton(_ button: UIButton) {
+        UIView.animate(
+            withDuration: 0.45,
+            delay: 0.4,
+            usingSpringWithDamping: 0.9,
+            initialSpringVelocity: 0.5,
+            options: [.curveEaseIn, .autoreverse]) {
+                button.transform = CGAffineTransform(scaleX: 1.02, y: 1.02)
+            } completion: { _ in
+                button.transform = .identity
+            }
+    }
+    
+    func shakeTextField(textField: UITextField, numberOfShakes: Int, direction: CGFloat, maxShakes: Int) {
+        UIView.animate(
+            withDuration: 0.2,
+            animations: {
+                textField.transform = CGAffineTransform(translationX: 5 * direction, y: 0)
+            }, completion: { (aBool :Bool) -> Void in
+                if (numberOfShakes >= maxShakes) {
+                    textField.transform = .identity
+                    textField.becomeFirstResponder()
+                    return
+                }
+                self.shakeTextField(textField: textField, numberOfShakes: numberOfShakes + 1, direction: direction * -1, maxShakes: maxShakes)
+        })
+    }
+    
+    func loadState() -> Bool {
+        let isSelected = UserDefaults.standard.bool(
+            forKey: Constants.Defaults.rememberMeKey.rawValue
+        )
+        return isSelected
+    }
+    
+    func saveState(state: Bool, authInfo: AuthInfo) {
+        UserDefaults.standard.set(state, forKey: Constants.Defaults.rememberMeKey.rawValue)
+        do {
+            let encodedData = try JSONEncoder().encode(authInfo)
+            UserDefaults.standard.set(encodedData, forKey: Constants.Defaults.switchStateKey.rawValue)
+        } catch {
+            print("Error encoding AuthInfo: \(error)")
+        }
     }
     
     func registerUserResult(email: String, password: String, passwordConfirmation : String) {
@@ -122,6 +174,9 @@ final class LoginViewController:UIViewController {
                     if let headers = response.response?.allHeaderFields as? [String: String]{
                         print("Headers: \(headers)")
                         print("Body: \(userResponse)")
+                        if rememberMeButton.isSelected {
+                            saveState(state: true, authInfo: AuthInfo(headers: headers))
+                        }
                         self.userResponse = userResponse
                         navigateToHome(headers: headers)
                     } else {
@@ -159,6 +214,9 @@ final class LoginViewController:UIViewController {
                     if let headers = response.response?.allHeaderFields as? [String: String]{
                         print("Headers: \(headers)")
                         print("Body: \(userResponse)")
+                        if rememberMeButton.isSelected {
+                            saveState(state: true, authInfo: AuthInfo(headers: headers))
+                        }
                         self.userResponse = userResponse
                         navigateToHome(headers: headers)
                     } else {

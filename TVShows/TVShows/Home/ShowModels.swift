@@ -4,7 +4,7 @@ struct Show: Decodable {
     let id: String
     let title: String
     let description: String?
-    let imageUrl: URL?
+    let imageUrl: String?
     let noOfReviews: Int?
     let averageRating: Double?
 

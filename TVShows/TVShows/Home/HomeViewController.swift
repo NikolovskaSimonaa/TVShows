@@ -20,23 +20,43 @@ final class HomeViewController:UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTitle()
+        setupNavigationBar()
         getShowsFromDatabase()
         setupTableView()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLogout), name: .didLogout, object: nil)
     }
     
     //MARK: - Utility methods
     
-    private func setTitle() {
+    private func setupNavigationBar() {
         title = "Shows"
         navigationController?.navigationBar.prefersLargeTitles = true
+        let profileDetailsItem = UIBarButtonItem(
+            image: UIImage(named: "ic-profile"),
+            style: .plain,
+            target: self,
+            action: #selector(profileDetailsActionHandler))
+        navigationItem.rightBarButtonItem = profileDetailsItem
+    }
+    
+    @objc func profileDetailsActionHandler() {
+        guard let authInfo = self.authInfo else { return }
+        let storyboard = UIStoryboard(name: Constants.Storyboards.profileDetails, bundle: nil)
+        let profileDetailsViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.profileDetails) as! ProfileDetailsViewController
+        profileDetailsViewController.authInfo = authInfo
+        let navigationController = UINavigationController(rootViewController: profileDetailsViewController)
+        present(navigationController, animated: true)
+    }
+    
+    @objc func handleLogout() {
+        let storyboard = UIStoryboard(name: Constants.Storyboards.login, bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.ViewControllers.login) as! LoginViewController
+        navigationController?.setViewControllers([loginViewController], animated: true)
     }
     
     private func getShowsFromDatabase() {
-        MBProgressHUD.showAdded(to: view, animated: true)
-        
         guard let authInfo else { return }
-        
+        MBProgressHUD.showAdded(to: view, animated: true)
         AF
             .request(
                 "https://tv-shows.infinum.academy/shows",
@@ -52,7 +72,6 @@ final class HomeViewController:UIViewController {
                 case .success(let showsResponse):
                     shows = showsResponse.shows
                     tableView.reloadData()
-                    print("Shows: \(shows)")
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }
@@ -90,7 +109,7 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 114
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

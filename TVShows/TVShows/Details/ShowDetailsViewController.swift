@@ -95,6 +95,7 @@ private extension ShowDetailsViewController {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsSelection = false
     }
     
     func alertMessage(title: String, message: String) {
@@ -129,6 +130,7 @@ private extension ShowDetailsViewController {
     func showDetailsCell(for indexPath: IndexPath) -> ImageDescriptionTableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.imageDescription, for: indexPath) as! ImageDescriptionTableViewCell
         cell.configure(with: showModel!)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 1000, bottom: 0, right: 0)
         return cell
     }
     
@@ -136,10 +138,12 @@ private extension ShowDetailsViewController {
         if showModel?.noOfReviews == nil ||
             showModel?.averageRating == nil {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.noReviews, for: indexPath) as! NoReviewsTableViewCell
+            cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
             return cell
         } else {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.rating, for: indexPath) as! RatingTableViewCell
+                cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
                 cell.configure(with: showModel!)
                 return cell
             } else {
@@ -157,6 +161,7 @@ private extension ShowDetailsViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.ViewCells.button, for: indexPath) as! ButtonTableViewCell
         cell.delegate = self
         cell.configure()
+        cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
         return cell
     }
 }

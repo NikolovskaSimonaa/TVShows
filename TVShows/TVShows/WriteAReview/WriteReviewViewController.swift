@@ -45,6 +45,8 @@ final class WriteReviewViewController: UIViewController {
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.allowsSelection = false
+        tableView.separatorStyle = .none
     }
     
     private func alertMessage(title: String, message: String) {
